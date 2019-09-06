@@ -1,0 +1,40 @@
+﻿<Window x:Class="QuizV2.JogoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizV2"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Grupo F - Quiz" Width="1142" Height="599">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="285*"/>
+            <RowDefinition Height="283*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="232*"/>
+            <ColumnDefinition Width="335*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Justify" TextWrapping="Wrap" Height="108" FontSize="28" Margin="20,140,20,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            Teste de pergunta bem grande que da pra ver se funcionando a quebra de linha quebra de linha quebra de linha quebra de linha quebra de linhaquebra de linha
+        </TextBlock>
+
+        <Image Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.Row="1" Margin="25"></Image>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="25">
+            <TextBlock FontSize="24" Margin="5">A) Resposta A</TextBlock>
+            <TextBlock FontSize="24" Margin="5">B) Resposta B</TextBlock>
+            <TextBlock FontSize="24" Margin="5">C) Resposta C</TextBlock>
+            <TextBlock FontSize="24" Margin="5">D) Resposta D</TextBlock>
+        </StackPanel>
+
+    </Grid>
+</Window>

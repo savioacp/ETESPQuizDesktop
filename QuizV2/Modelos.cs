@@ -1,0 +1,40 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QuizV2
+{
+    public class Equipe
+    {
+        public int Id;
+        public string Nome;
+        public string Cor;
+        public string[] Integrantes;
+        public int Pontuação;
+    }
+
+    public class Pergunta
+    {
+        public int Id;
+		public int Pontuação;
+        public string Texto;
+		private bool dissertativa;
+		public bool TemImagem;
+        public System.Drawing.Image Imagem;
+        public string Correta = null;
+        public string[] Respostas;
+
+		public bool Dissertativa
+		{
+			get
+			{
+				return Respostas[0] == "___";
+			}
+		}
+	}
+
+    
+
+}
