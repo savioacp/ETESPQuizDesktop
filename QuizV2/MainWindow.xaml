@@ -70,6 +70,12 @@
                         <materialDesign:Card>
                             <Button Name="btnIniciarJogo" Content="Iniciar mas nem tanto"/>
                         </materialDesign:Card>
+
+                        <Grid Height="128" Width="128">
+                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" Value="40" Width="Auto" Height="Auto" />
+                            <TextBlock Text="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+
                     </WrapPanel>
                 </Grid>
             </materialDesign:TransitionerSlide>
@@ -81,27 +87,75 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="125"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="506*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock FontSize="36" Margin="15,0,0,0" FontFamily="Forte" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
-                    <Button Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
-                        </StackPanel>
-                    </Button>
-                    <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" >
-                        <WrapPanel Name="wrpEquipes">
+                <materialDesign:DialogHost Name="dlgAddEquipe" IsOpen="False">
+                    <materialDesign:DialogHost.DialogContent>
+                        <materialDesign:Card Width="250">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Adicionar Equipe" Grid.Row="0" Grid.ColumnSpan="2" Margin="15,15,15,10" FontSize="16"/>
+                                <TextBox x:Name="txtAddEquipeNome" Grid.Row="1" materialDesign:HintAssist.Hint="Nome da equipe" Grid.ColumnSpan="2" Margin="15,0,15,15" FontSize="15">
+                                    <TextBox.Text>
+                                        <Binding Path="Nome da equipe" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <local:NotEmptyValidator ValidatesOnTargetUpdated="True" />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                                <TextBox Name="txtAddEquipeIntegrante1" Grid.Row="2" materialDesign:HintAssist.Hint="Integrante 1" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
+                                <TextBox Name="txtAddEquipeIntegrante2" Grid.Row="3" materialDesign:HintAssist.Hint="Integrante 2" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
+                                <TextBox Name="txtAddEquipeIntegrante3" Grid.Row="4" materialDesign:HintAssist.Hint="Integrante 3" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
+                                <TextBox Name="txtAddEquipeIntegrante4" Grid.Row="5" materialDesign:HintAssist.Hint="Integrante 4" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
+                                <TextBox Name="txtAddEquipeIntegrante5" Grid.Row="6" materialDesign:HintAssist.Hint="Integrante 5" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="7" Click="btnVoltarAdicionar_Click" Foreground="#FF999999">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ArrowBack"/>
+                                        <TextBlock Margin="3,0,0,0" Text="Voltar"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Padding="5" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5,0,5,5" Grid.Column="1" Grid.Row="7" Click="btnConfirmarAdicionar_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Add" />
+                                        <TextBlock Text="Adicionar" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
 
-                        </WrapPanel>
-                    </ScrollViewer>
-                </Grid>
+                            </Grid>
+                        </materialDesign:Card>
+                    </materialDesign:DialogHost.DialogContent>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="125"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="506*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="36" Margin="15,0,0,0" FontFamily="Forte" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
+                        <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
+                            <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
+                        </Button>
+                        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" >
+                            <WrapPanel Name="wrpEquipes">
+
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </materialDesign:DialogHost>
             </materialDesign:TransitionerSlide>
 
             <materialDesign:TransitionerSlide>
@@ -238,5 +292,7 @@
                 </StackPanel>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
+        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" Name="snackbarNotifications" />
+
     </Grid>
 </Window>

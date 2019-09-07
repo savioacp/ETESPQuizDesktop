@@ -30,12 +30,16 @@ namespace QuizV2.Data
         {
 			cmd = new SqlCommand
 			{
-				CommandText = "insert tblEquipe values (@Nome, @Cor)"
-			};
+				CommandText = "insert tblEquipe output INSERTED.IdEquipe values (@Nome, @Cor)"
+            };
 			cmd.Parameters.AddWithValue("@Nome", equipe.Nome);
             cmd.Parameters.AddWithValue("@Cor", equipe.Cor);
-			cmd.Connection = conexao.Conectar();
-			cmd.ExecuteNonQuery();
+            cmd.Connection = conexao.Conectar();
+			equipe.Id = (int)cmd.ExecuteScalar();
+            foreach(string integrante in equipe.Integrantes)
+            {
+                AddIntegrante(equipe.Id, integrante);
+            }
 		}
 
         public static void AddIntegrante(int Id, String Nome)

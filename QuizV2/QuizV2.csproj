@@ -81,6 +81,7 @@
     </Compile>
     <Compile Include="SequentialConverter.cs" />
     <Compile Include="Util\GridHelper.cs" />
+    <Compile Include="Util\NotEmptyValidator.cs" />
     <Compile Include="Util\Serializa.cs" />
     <Page Include="EquipeCard.xaml">
       <SubType>Designer</SubType>

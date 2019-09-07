@@ -48,6 +48,7 @@ namespace QuizV2
         {
             dlgDeletar.IsOpen = false;
             Data.DataManager.DeleteEquipe(equipe.Id);
+            MainWindow.Notificar($"Equipe {equipe.Nome} deletada com sucesso!");
             MainWindow.AtualizarEquipes();
         }
         private void btnVoltarDeletar_Click(object sender, RoutedEventArgs e)
@@ -67,7 +68,8 @@ namespace QuizV2
 			};
 
 			Data.DataManager.UpdateEquipe(equipe.Id, newEquipe);
-			MainWindow.AtualizarEquipes();
+            MainWindow.Notificar($"Equipe {equipe.Nome} alterada com sucesso!");
+            MainWindow.AtualizarEquipes();
         }
     }
 }

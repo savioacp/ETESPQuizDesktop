@@ -118,37 +118,34 @@ insert into tblIntegrante values (11, 'Integrante 03')
 insert into tblIntegrante values (11, 'Integrante 04')
 insert into tblIntegrante values (11, 'Integrante 05')
 
-insert into tblEquipe values ('Equipe 12', '#5208a6')
+insert into tblEquipe values ('Equipe 12', '#c98f38')
 insert into tblIntegrante values (12, 'Integrante 01')
 insert into tblIntegrante values (12, 'Integrante 02')
 insert into tblIntegrante values (12, 'Integrante 03')
 insert into tblIntegrante values (12, 'Integrante 04')
 insert into tblIntegrante values (12, 'Integrante 05')
 
-insert into tblEquipe values ('Equipe 13', '#5e0050')
+insert into tblEquipe values ('Equipe 13', '#5e8c6a')
 insert into tblIntegrante values (13, 'Integrante 01')
 insert into tblIntegrante values (13, 'Integrante 02')
 insert into tblIntegrante values (13, 'Integrante 03')
 insert into tblIntegrante values (13, 'Integrante 04')
 insert into tblIntegrante values (13, 'Integrante 05')
 
-insert into tblEquipe values ('Equipe 14', '#610117')
+insert into tblEquipe values ('Equipe 14', '#adaba8')
 insert into tblIntegrante values (14, 'Integrante 01')
 insert into tblIntegrante values (14, 'Integrante 02')
 insert into tblIntegrante values (14, 'Integrante 03')
 insert into tblIntegrante values (14, 'Integrante 04')
 insert into tblIntegrante values (14, 'Integrante 05')
 
-insert into tblEquipe values ('Equipe 15', '#003454')
+insert into tblEquipe values ('Equipe 15', '#875656') 
 insert into tblIntegrante values (15, 'Snas')
 insert into tblIntegrante values (15, 'Integrante 02')
 insert into tblIntegrante values (15, 'Integrante 03')
 insert into tblIntegrante values (15, 'Integrante 04')
 insert into tblIntegrante values (15, 'Integrante 05')
 
-
-
-select * from tblIntegrante where IdEquipe=1
 
 
 

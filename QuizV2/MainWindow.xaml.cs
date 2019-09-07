@@ -60,10 +60,34 @@ namespace QuizV2
                 currentWindow.wrpEquipes.Children.Add(new EquipeCard(eq));
             }
         }
+        public static void Notificar(string mensagem)
+        {
+            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
+            currentWindow.snackbarNotifications.MessageQueue.Enqueue(mensagem, "OK", () => {; });
+        }
 
-		private void BtnAdicionarEquipe_Click(object sender, RoutedEventArgs e)
-		{
+        private void BtnAdicionarEquipe_Click(object sender, RoutedEventArgs e)
+        {
+            dlgAddEquipe.IsOpen = true;
+        }
 
-		}
-	}
+        private void btnConfirmarAdicionar_Click(object sender, RoutedEventArgs e)
+        {
+
+            Equipe toAdd = new Equipe()
+            { 
+                Integrantes =  new[] {txtAddEquipeIntegrante1.Text, txtAddEquipeIntegrante2.Text, txtAddEquipeIntegrante3.Text, txtAddEquipeIntegrante4.Text, txtAddEquipeIntegrante5.Text },
+                Nome = txtAddEquipeNome.Text,
+                Cor = "#ffffff"
+            };
+            Data.DataManager.AddEquipe(toAdd);
+            dlgAddEquipe.IsOpen = false;
+            Notificar($"Equipe \"{toAdd.Nome}\" adicionada com sucesso!");
+            AtualizarEquipes();
+        }
+        private void btnVoltarAdicionar_Click(object sender, RoutedEventArgs e)
+        {
+            dlgAddEquipe.IsOpen = false;
+        }
+    }
 }
