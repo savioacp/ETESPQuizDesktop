@@ -72,7 +72,7 @@
     <Compile Include="JogoWindow.xaml.cs">
       <DependentUpon>JogoWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Modelos.cs" />
+    <Compile Include="Data\Modelos.cs" />
     <Compile Include="PerguntaExpander.xaml.cs">
       <DependentUpon>PerguntaExpander.xaml</DependentUpon>
     </Compile>

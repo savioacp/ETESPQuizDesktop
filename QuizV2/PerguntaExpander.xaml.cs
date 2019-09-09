@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,11 +26,31 @@ namespace QuizV2
             InitializeComponent();
 
 			expPergunta.Header = pergunta.Texto;
+            txtRespostaA.Text = pergunta.Respostas[0];
+            txtRespostaB.Text = pergunta.Respostas[1];
+            txtRespostaC.Text = pergunta.Respostas[2];
+            txtRespostaD.Text = pergunta.Respostas[3];
+
+            rdbRespostaA.IsChecked = pergunta.Correta == pergunta.Respostas[0];
+            rdbRespostaB.IsChecked = pergunta.Correta == pergunta.Respostas[1];
+            rdbRespostaC.IsChecked = pergunta.Correta == pergunta.Respostas[2];
+            rdbRespostaD.IsChecked = pergunta.Correta == pergunta.Respostas[3];
+
+            tgbDissertativa.IsChecked = pergunta.Dissertativa;
+            tgbTopQuiz.IsChecked = pergunta.TopQuiz;
+
+            img1.Source = Serializa.GetImageSourceFromImage(pergunta.Imagem);
+            
         }
 
 		private void BtnDeletar_Click(object sender, RoutedEventArgs e)
 		{
 
 		}
-	}
+
+        private void ExpPergunta_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+    }
 }

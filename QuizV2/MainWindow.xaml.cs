@@ -20,6 +20,8 @@ namespace QuizV2
 	/// <summary>
 	/// Interação lógica para MainWindow.xam
 	/// </summary>
+    /// CMB WAZ HERE
+    
 	public partial class MainWindow : Window
 	{
         Equipe[] equipes;
@@ -47,7 +49,7 @@ namespace QuizV2
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("Não, isso não funciona...");
+			MessageBox.Show("Não, isso não funciona...");//será?
 		}
 
         public static void AtualizarEquipes()
@@ -61,9 +63,9 @@ namespace QuizV2
             }
         }
         public static void Notificar(string mensagem)
-        {
-            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
-            currentWindow.snackbarNotifications.MessageQueue.Enqueue(mensagem, "OK", () => {; });
+        {                                                                                                    
+            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;                         
+            currentWindow.snackbarNotifications.MessageQueue.Enqueue(mensagem, "OK", () => {; });            
         }
 
         private void BtnAdicionarEquipe_Click(object sender, RoutedEventArgs e)
@@ -74,20 +76,25 @@ namespace QuizV2
         private void btnConfirmarAdicionar_Click(object sender, RoutedEventArgs e)
         {
 
-            Equipe toAdd = new Equipe()
+            Equipe toAdd = new Equipe()  //
             { 
                 Integrantes =  new[] {txtAddEquipeIntegrante1.Text, txtAddEquipeIntegrante2.Text, txtAddEquipeIntegrante3.Text, txtAddEquipeIntegrante4.Text, txtAddEquipeIntegrante5.Text },
                 Nome = txtAddEquipeNome.Text,
                 Cor = "#ffffff"
             };
-            Data.DataManager.AddEquipe(toAdd);
-            dlgAddEquipe.IsOpen = false;
-            Notificar($"Equipe \"{toAdd.Nome}\" adicionada com sucesso!");
+            Data.DataManager.AddEquipe(toAdd);                                            
+            dlgAddEquipe.IsOpen = false;                                                  
+            Notificar($"Equipe \"{toAdd.Nome}\" adicionada com sucesso!");                
             AtualizarEquipes();
         }
         private void btnVoltarAdicionar_Click(object sender, RoutedEventArgs e)
         {
             dlgAddEquipe.IsOpen = false;
+        }
+
+        private void BtnAdicionarPergunta_Click(object sender, RoutedEventArgs e)
+        {
+            dlgAddPergunta.IsOpen = true;
         }
     }
 }

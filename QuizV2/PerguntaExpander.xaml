@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:QuizV2"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Expander
+    <Expander MouseDoubleClick="ExpPergunta_MouseDoubleClick"
         Name="expPergunta"
                 HorizontalAlignment="Stretch"
                 Header="Pergunta 01">
@@ -24,29 +24,33 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="0" Margin="8,0,0,0" ></ToggleButton>
             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,5">Pergunta dissertativa</TextBlock>
 
-            <RadioButton GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="1"/>
-            <TextBox Name="txtRespostaA" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta A" Grid.Column="1" Grid.Row="1"></TextBox>
+            <ToggleButton Name="tgbTopQuiz" Grid.Column="0" Grid.Row="1" Margin="8,0,0,0" ></ToggleButton>
+            <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,5">TopQuiz</TextBlock>
 
-            <RadioButton GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="2"/>
-            <TextBox Name="txtRespostaB" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta B" Grid.Column="1" Grid.Row="2"></TextBox>
+            <RadioButton Name="rdbRespostaA" GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="2"/>
+            <TextBox Name="txtRespostaA" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta A" Grid.Column="1" Grid.Row="2"></TextBox>
 
-            <RadioButton GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="3"/>
-            <TextBox Name="txtRespostaC" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta C" Grid.Column="1" Grid.Row="3"></TextBox>
+            <RadioButton Name="rdbRespostaB" GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="3"/>
+            <TextBox Name="txtRespostaB" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta B" Grid.Column="1" Grid.Row="3"></TextBox>
 
-            <RadioButton GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="4"/>
-            <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta D" Grid.Column="1" Grid.Row="4"></TextBox>
+            <RadioButton Name="rdbRespostaC" GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="4"/>
+            <TextBox Name="txtRespostaC" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta C" Grid.Column="1" Grid.Row="4"></TextBox>
 
-            <Button Name="btnDeletar" Style="{DynamicResource MaterialDesignFlatAccentButton}" Foreground="#FFB24242" Grid.ColumnSpan="2" Grid.Row="5" Click="BtnDeletar_Click">
+            <RadioButton Name="rdbRespostaD" GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="5"/>
+            <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta D" Grid.Column="1" Grid.Row="5"></TextBox>
+
+            <Button Name="btnDeletar" Style="{DynamicResource MaterialDesignFlatAccentButton}" Foreground="#FFB24242" Grid.ColumnSpan="2" Grid.Row="6" Click="BtnDeletar_Click">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="DeleteForever" VerticalAlignment="Center"/>
                     <TextBlock VerticalAlignment="Center">Deletar Pergunta</TextBlock>
                 </StackPanel>
             </Button>
-            <Image Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Grid.Column="2" Grid.RowSpan="6" Margin="15"/>
+            <Image Name="img1" Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Grid.Column="2" Grid.RowSpan="7" Margin="15"/>
 
         </Grid>
     </Expander>

@@ -20,7 +20,7 @@ namespace QuizV2
         public int Id;
 		public int Pontuação;
         public string Texto;
-		private bool dissertativa;
+        public bool TopQuiz;
 		public bool TemImagem;
         public System.Drawing.Image Imagem;
         public string Correta = null;
@@ -30,7 +30,7 @@ namespace QuizV2
 		{
 			get
 			{
-				return Respostas[0] == "___";
+				return Respostas.Length == 0;
 			}
 		}
 	}
