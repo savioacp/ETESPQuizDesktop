@@ -96,5 +96,10 @@ namespace QuizV2
         {
             dlgAddPergunta.IsOpen = true;
         }
+
+        private void CtcImagem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("");
+        }
     }
 }

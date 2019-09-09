@@ -205,14 +205,15 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <materialDesign:DialogHost Name="dlgAddPergunta" IsOpen="True">
+                <materialDesign:DialogHost Name="dlgAddPergunta" IsOpen="False">
                     <materialDesign:DialogHost.DialogContent>
                         <materialDesign:Card Width="700">
                             <Grid Margin="15">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="46"/>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="304"/>
+                                    <ColumnDefinition Width="23"/>
+                                    <ColumnDefinition Width="327"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="2*"/>
@@ -226,27 +227,47 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Text="Nova Pergunta" Grid.ColumnSpan="3" FontSize="20" Margin="8"/>
-                                <TextBox Grid.ColumnSpan="3"></TextBox>
-                                <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="1" Margin="8,0,0,0" ></ToggleButton>
-                                <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,5">Dissertativa</TextBlock>
+                                <TextBlock Text="Nova Pergunta" Grid.ColumnSpan="4" FontSize="20" Margin="8" />
+                                <TextBox Grid.ColumnSpan="4" Grid.Row="1" FontSize="18" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Texto da Pergunta" Margin="8"></TextBox>
 
-                                <ToggleButton Name="tgbTopQuiz" Grid.Column="0" Grid.Row="2" Margin="8,0,0,0" ></ToggleButton>
-                                <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0,5">TopQuiz</TextBlock>
+                                <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="2" Margin="8,0,0,0" ></ToggleButton>
+                                <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0,5" Grid.ColumnSpan="2">Dissertativa</TextBlock>
 
-                                <RadioButton Name="rdbRespostaA" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="3"/>
-                                <TextBox Name="txtRespostaA" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.Hint="Resposta A" materialDesign:HintAssist.IsFloating="True" Grid.Column="1" Grid.Row="3"></TextBox>
+                                <ToggleButton Name="tgbTopQuiz" Grid.Column="0" Grid.Row="3" Margin="8,0,0,0" ></ToggleButton>
+                                <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Margin="0,5" Grid.ColumnSpan="2">TopQuiz</TextBlock>
 
-                                <RadioButton Name="rdbRespostaB" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="4"/>
-                                <TextBox Name="txtRespostaB" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta B" Grid.Column="1" Grid.Row="4"></TextBox>
+                                <RadioButton Name="rdbRespostaA" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="4"/>
+                                <TextBox Name="txtRespostaA" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta A" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
 
-                                <RadioButton Name="rdbRespostaC" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="5"/>
-                                <TextBox Name="txtRespostaC" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta C" Grid.Column="1" Grid.Row="5"></TextBox>
+                                <RadioButton Name="rdbRespostaB" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="5"/>
+                                <TextBox Name="txtRespostaB" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta B" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
 
-                                <RadioButton Name="rdbRespostaD" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="6"/>
-                                <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta D" Grid.Column="1" Grid.Row="6"></TextBox>
-                                <Image Name="img1" Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Grid.Column="2" Grid.RowSpan="7" Margin="15"/>
+                                <RadioButton Name="rdbRespostaC" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="6"/>
+                                <TextBox Name="txtRespostaC" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta C" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"></TextBox>
 
+                                <RadioButton Name="rdbRespostaD" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="7"/>
+                                <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta D" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"></TextBox>
+                                <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick">
+                                    <Grid>
+                                        <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" />
+                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <materialDesign:PackIcon Kind="GestureDoubleTap" Width="32" Height="32" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Duplo clique para editar a imagem" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </ContentControl>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="8" Click="btnVoltarAdicionar_Click" Foreground="#FF999999" Grid.ColumnSpan="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="ArrowBack"/>
+                                    <TextBlock Margin="3,0,0,0" Text="Voltar"/>
+                                </StackPanel>
+                                </Button>
+                                <Button Padding="5" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5,0,5,5" Grid.Column="2" Grid.Row="8" Click="btnConfirmarAdicionar_Click" Grid.ColumnSpan="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Add" />
+                                        <TextBlock Text="Adicionar" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
                             </Grid>
                         </materialDesign:Card>
                     </materialDesign:DialogHost.DialogContent>
