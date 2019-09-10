@@ -45,7 +45,7 @@ namespace QuizV2
 
 		private void BtnDeletar_Click(object sender, RoutedEventArgs e)
 		{
-
+            
 		}
 
         private void ExpPergunta_MouseDoubleClick(object sender, MouseButtonEventArgs e)

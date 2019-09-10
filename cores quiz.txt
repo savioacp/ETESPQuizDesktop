@@ -1,0 +1,17 @@
+equipe 12: #c98f38
+equipe 13: #5e8c6a
+equipe 14: #adaba8
+equipe 15: #875656
+
+
+****Sobre****
+ Projeto de quiz desenvolvido para a Escola Técnica Estadual de São Paulo, pelos alunos do 'Grupo F' do segundo ano de informatica integrado a ensino médio, para ser usado na semana da Primavera pelas professoras Marcia Xavier e Juliana Algumacoisa.
+
+EQUIPE
+Beatriz Silverio: designer desktop e web
+Guilherme Panza: desenvolvedor Desktop
+Juliana Craveiro: desenvolvedora de Banco de Dados
+Khadeeja Baloch: designer desktop e web
+Lara Souza: desenvolvedora Desktop
+Lucas Kenzo: desenvolvedor Web
+Savio Cabelo: INCRIVEL desenvolvedor desktop

@@ -87,7 +87,7 @@ namespace QuizV2
             Notificar($"Equipe \"{toAdd.Nome}\" adicionada com sucesso!");                
             AtualizarEquipes();
         }
-        private void btnVoltarAdicionar_Click(object sender, RoutedEventArgs e)
+        private void btnVoltarAdicionarEquipe_Click(object sender, RoutedEventArgs e)
         {
             dlgAddEquipe.IsOpen = false;
         }
@@ -101,5 +101,61 @@ namespace QuizV2
         {
             MessageBox.Show("");
         }
+
+        private void tgbDissertativa_Click(object sender, RoutedEventArgs e)
+        {
+            if (tgbDissertativa.IsChecked == true)
+            {
+                txtRespostaA.IsEnabled = false;
+                txtRespostaB.IsEnabled = false;
+                txtRespostaC.IsEnabled = false;
+                txtRespostaD.IsEnabled = false;
+
+                rdbRespostaA.IsEnabled = false;
+                rdbRespostaB.IsEnabled = false;
+                rdbRespostaC.IsEnabled = false;
+                rdbRespostaD.IsEnabled = false;
+
+
+            }
+            else
+            {
+                txtRespostaA.IsEnabled = true;
+                txtRespostaB.IsEnabled = true;
+                txtRespostaC.IsEnabled = true;
+                txtRespostaD.IsEnabled = true;
+
+                rdbRespostaA.IsEnabled = true;
+                rdbRespostaB.IsEnabled = true;
+                rdbRespostaC.IsEnabled = true;
+                rdbRespostaD.IsEnabled = true;
+            }
+        }
+
+        private void btnVoltarAdicionarPergunta_Click(object sender, RoutedEventArgs e)
+        {
+            txtRespostaA.Text = "";
+            txtRespostaB.Text = "";
+            txtRespostaC.Text = "";
+            txtRespostaD.Text = "";
+            dlgAddPergunta.IsOpen = false;
+        }
+        private void btnConfirmarAdicionarPergunta_Click(object sender, RoutedEventArgs e)
+        {
+            string correta = "";
+            if (rdbRespostaA.IsChecked ?? false) correta = txtRespostaA.Text;
+            if (rdbRespostaB.IsChecked ?? false) correta = txtRespostaB.Text;
+            if (rdbRespostaC.IsChecked ?? false) correta = txtRespostaC.Text;
+            if (rdbRespostaD.IsChecked ?? false) correta = txtRespostaD.Text;
+            Pergunta pergunta = new Pergunta
+            {
+                Texto = txtTextoPergunta.Text,
+                Imagem = Serializa.GetImageFromImageSource(img1.Source),
+                TopQuiz = tgbTopQuiz.IsChecked ?? false,
+                Correta = correta,
+                
+            };
+        }
+
     }
 }

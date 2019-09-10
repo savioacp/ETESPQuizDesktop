@@ -30,7 +30,7 @@ namespace QuizV2
 		{
 			get
 			{
-				return Respostas.Length == 0;
+				return Respostas.Length == 1;
 			}
 		}
 	}

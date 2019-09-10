@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace QuizV2
 {
-    public class NotEmptyValidator : ValidationRule
+    public class NotEmptyValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
