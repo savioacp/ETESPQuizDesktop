@@ -18,7 +18,6 @@ namespace QuizV2
     public class Pergunta
     {
         public int Id;
-		public int Pontuação;
         public string Texto;
         public bool TopQuiz;
 		public bool TemImagem;

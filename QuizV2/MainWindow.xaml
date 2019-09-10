@@ -40,7 +40,7 @@
                     <Button Name="mnuBtnPerguntas" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
                         <StackPanel Orientation="Horizontal" Width="160">
                             <materialDesign:PackIcon Kind="QuestionMark"/>
-                            <TextBlock Text="Perguntas" Margin="10,0,0,0"/>
+                            <TextBlock Text="Questões" Margin="10,0,0,0"/>
                         </StackPanel>
                     </Button>
                     <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
@@ -144,7 +144,7 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="506*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock FontSize="36" Margin="15,0,0,0" FontFamily="Forte" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
+                        <TextBlock FontSize="36" Margin="15,0,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
                         <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
                             <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
                         </Button>
@@ -206,6 +206,8 @@
 
                                 <RadioButton Name="rdbRespostaD" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="7"/>
                                 <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta D" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"></TextBox>
+                                <TextBox Name="txtRespostaDissertativa" TextWrapping="Wrap" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" Style="{DynamicResource MaterialDesignTextBox}" Margin="10" materialDesign:TextFieldAssist.HasFilledTextField="True" Visibility="Hidden"/>
+
                                 <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick">
                                     <Grid>
                                         <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" />
@@ -239,7 +241,7 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock FontSize="36" Grid.Column="0" FontFamily="Forte" Margin="15,8,0,0">Questões</TextBlock>
+                        <TextBlock FontSize="36" Grid.Column="0"  Margin="15,8,0,0" FontFamily="MV Boli">Questões</TextBlock>
                         <Button  Name="btnAdicionarPergunta" Click="BtnAdicionarPergunta_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
                             <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
                         </Button>

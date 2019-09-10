@@ -14,7 +14,7 @@ namespace QuizV2.Data
 		static SqlCommand cmd;
 		static Conexao conexao = new Conexao();
 
-        public static void AddUsuario(String Nome, String Senha)
+        public static void AddUsuario(string Nome, string Senha)
         {
 			cmd = new SqlCommand
 			{
@@ -42,7 +42,7 @@ namespace QuizV2.Data
             }
 		}
 
-        public static void AddIntegrante(int Id, String Nome)
+        public static void AddIntegrante(int Id, string Nome)
         {
 			cmd = new SqlCommand
 			{
@@ -58,16 +58,21 @@ namespace QuizV2.Data
         {
 			cmd = new SqlCommand
 			{
-				CommandText = "insert tblPergunta values (@Texto, @Imagem, @Pontuacao)"
-			};
+				CommandText = "insert tblPergunta output INSERTED.IdPergunta values (@Texto, @Imagem, @TopQuiz)"
+            };
 			cmd.Parameters.AddWithValue("@Texto", pergunta.Texto);
-            cmd.Parameters.AddWithValue("@Imagem", pergunta.Imagem);
-            cmd.Parameters.AddWithValue("@Pontuacao", pergunta.Pontuação);
+            cmd.Parameters.AddWithValue("@Imagem", Serializa.GetBytesFromImage(pergunta.Imagem));
+            cmd.Parameters.Add("@TopQuiz", SqlDbType.Bit).Value = pergunta.TopQuiz;
 			cmd.Connection = conexao.Conectar();
-			cmd.ExecuteNonQuery();
-		}
+			int id = (int)cmd.ExecuteScalar();
 
-        public static void AddResposta(int Id, String Texto, String Correta)
+            foreach (var resposta in pergunta.Respostas)
+            {
+                AddResposta(id, resposta, pergunta.Correta == resposta);
+            }
+        }
+
+        private static void AddResposta(int Id, string Texto, bool Correta)
         {
 			cmd = new SqlCommand
 			{
@@ -76,6 +81,8 @@ namespace QuizV2.Data
 			cmd.Parameters.AddWithValue("@IdPergunta", Id);
             cmd.Parameters.AddWithValue("@Texto", Texto);
             cmd.Parameters.AddWithValue("@Correta", Correta);
+            cmd.Connection = conexao.Conectar();
+            cmd.ExecuteNonQuery();
         }
 
         public static Equipe[] GetEquipes()
@@ -110,7 +117,7 @@ namespace QuizV2.Data
 				CommandText = "select * from tblIntegrante where IdEquipe=@Id"
 			};
 			cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
-			List<String> integrantes = new List<String>();
+			List<string> integrantes = new List<string>();
             cmd.Connection = conexao.Conectar();
             var dr = cmd.ExecuteReader();
             var dt = new DataTable();
@@ -135,31 +142,39 @@ namespace QuizV2.Data
             dt.Load(dr);
             foreach (DataRow row in dt.Rows)
             {
+                string correta = "";
+                string[] respostas = GetRespostas(int.Parse(row["IdPergunta"].ToString()), ref correta);
                 Pergunta pergunta = new Pergunta()
                 {
                     Id = int.Parse(row["IdPergunta"].ToString()),
                     Texto = row["Texto"].ToString(),
-                    //Imagem = row["Imagem"].ToString(),
-                    Pontuação = int.Parse(row["Pontuacao"].ToString()),
-                    Respostas = GetRespostas(int.Parse(row["IdPergunta"].ToString()))
+                    Imagem = Serializa.GetImageFromBytes(row["Imagem"] as byte[]),
+                    Respostas = respostas,
+                    Correta = correta,
+                    TopQuiz = row["TopQuiz"] as bool? ?? false
                 };
+                perguntas.Add(pergunta);
             }
             return perguntas.ToArray();
         }
 
-        private static string[] GetRespostas(int Id)
+        private static string[] GetRespostas(int Id, ref string correta)
         {
 			cmd = new SqlCommand
 			{
-				CommandText = "select * from tblResposta where Id=@Id"
+				CommandText = "select * from tblResposta where IdPergunta=@Id"
 			};
-			List<String> respostas = new List<String>();
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = Id;
+            cmd.Connection = conexao.Conectar();
+			List<string> respostas = new List<string>();
             var dr = cmd.ExecuteReader();
             var dt = new DataTable();
             dt.Load(dr);
             foreach (DataRow row in dt.Rows)
             {
-                respostas.Add(row["NomeIntegrante"].ToString());
+                respostas.Add(row["Texto"].ToString());
+                if ((bool?)row["Correta"] == true)
+                    correta = row["Texto"].ToString();
             }
             return respostas.ToArray();
         }

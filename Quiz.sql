@@ -29,9 +29,9 @@ create table tblIntegrante(
 -- Perguntas e Respostas
 create table tblPergunta(
 	IdPergunta int identity(1, 1) primary key,
+	Texto varchar(512),
 	Imagem varbinary(MAX),
-	TopQuiz bit,
-	Pontuacao int
+	TopQuiz bit
 )
 
 create table tblResposta(
@@ -146,9 +146,6 @@ insert into tblIntegrante values (15, 'Integrante 03')
 insert into tblIntegrante values (15, 'Integrante 04')
 insert into tblIntegrante values (15, 'Integrante 05')
 
+select * from tblPergunta 
 
-
-
-
-
-
+select * from tblResposta where IdPergunta=1

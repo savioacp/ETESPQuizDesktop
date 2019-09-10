@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
+using System.Drawing;
 
 namespace QuizV2
 {
@@ -25,6 +26,7 @@ namespace QuizV2
 	public partial class MainWindow : Window
 	{
         Equipe[] equipes;
+        Pergunta[] perguntas;
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -42,7 +44,7 @@ namespace QuizV2
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
             AtualizarEquipes();
-
+            AtualizarPerguntas();
 			//foreach(Equipe eq in Data.DataManager.GetEquipes())
 			//	MessageBox.Show($"Nome: {eq.Nome}({eq.Id})\n\tCor: {eq.Cor}\n\t{eq.Integrantes[0]}\n\t{eq.Integrantes[1]}\n\t{eq.Integrantes[2]}\n\t{eq.Integrantes[3]}\n\t{eq.Integrantes[4]}");
 		}
@@ -60,6 +62,17 @@ namespace QuizV2
             foreach (Equipe eq in currentWindow.equipes)
             {
                 currentWindow.wrpEquipes.Children.Add(new EquipeCard(eq));
+            }
+        }
+
+        public static void AtualizarPerguntas()
+        {
+            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
+            currentWindow.perguntas = Data.DataManager.GetPerguntas();
+            currentWindow.stpPerguntas.Children.Clear();
+            foreach (Pergunta pergunta in currentWindow.perguntas)
+            {
+                currentWindow.stpPerguntas.Children.Add(new PerguntaExpander(pergunta));
             }
         }
         public static void Notificar(string mensagem)
@@ -106,29 +119,31 @@ namespace QuizV2
         {
             if (tgbDissertativa.IsChecked == true)
             {
-                txtRespostaA.IsEnabled = false;
-                txtRespostaB.IsEnabled = false;
-                txtRespostaC.IsEnabled = false;
-                txtRespostaD.IsEnabled = false;
+                txtRespostaA.Visibility = Visibility.Hidden;
+                txtRespostaB.Visibility = Visibility.Hidden;
+                txtRespostaC.Visibility = Visibility.Hidden;
+                txtRespostaD.Visibility = Visibility.Hidden;
 
-                rdbRespostaA.IsEnabled = false;
-                rdbRespostaB.IsEnabled = false;
-                rdbRespostaC.IsEnabled = false;
-                rdbRespostaD.IsEnabled = false;
+                rdbRespostaA.Visibility = Visibility.Hidden;
+                rdbRespostaB.Visibility = Visibility.Hidden;
+                rdbRespostaC.Visibility = Visibility.Hidden;
+                rdbRespostaD.Visibility = Visibility.Hidden;
 
-
+                txtRespostaDissertativa.Visibility = Visibility.Visible;
             }
             else
             {
-                txtRespostaA.IsEnabled = true;
-                txtRespostaB.IsEnabled = true;
-                txtRespostaC.IsEnabled = true;
-                txtRespostaD.IsEnabled = true;
+                txtRespostaA.Visibility = Visibility.Visible;
+                txtRespostaB.Visibility = Visibility.Visible;
+                txtRespostaC.Visibility = Visibility.Visible;
+                txtRespostaD.Visibility = Visibility.Visible;
 
-                rdbRespostaA.IsEnabled = true;
-                rdbRespostaB.IsEnabled = true;
-                rdbRespostaC.IsEnabled = true;
-                rdbRespostaD.IsEnabled = true;
+                rdbRespostaA.Visibility = Visibility.Visible;
+                rdbRespostaB.Visibility = Visibility.Visible;
+                rdbRespostaC.Visibility = Visibility.Visible;
+                rdbRespostaD.Visibility = Visibility.Visible;
+
+                txtRespostaDissertativa.Visibility = Visibility.Hidden;
             }
         }
 
@@ -147,14 +162,28 @@ namespace QuizV2
             if (rdbRespostaB.IsChecked ?? false) correta = txtRespostaB.Text;
             if (rdbRespostaC.IsChecked ?? false) correta = txtRespostaC.Text;
             if (rdbRespostaD.IsChecked ?? false) correta = txtRespostaD.Text;
+
+            var vazia = BitmapSource.Create(2, 2, 96, 96, PixelFormats.Indexed1, new BitmapPalette(new List<System.Windows.Media.Color> { Colors.Transparent }), new byte[] { 0, 0, 0, 0 }, 1);
+            var bmpVazio = new Bitmap(96, 96);
+
+            System.Drawing.Image image;
+            if (img1.Source == null)
+                image = bmpVazio;
+            else
+                image = Serializa.GetImageFromImageSource(img1.Source);
+
             Pergunta pergunta = new Pergunta
             {
                 Texto = txtTextoPergunta.Text,
-                Imagem = Serializa.GetImageFromImageSource(img1.Source),
+                Imagem = image,
                 TopQuiz = tgbTopQuiz.IsChecked ?? false,
                 Correta = correta,
-                
+                Respostas = new [] { txtRespostaA.Text, txtRespostaB.Text, txtRespostaC.Text, txtRespostaD.Text },              
             };
+
+            Data.DataManager.AddPergunta(pergunta);
+            dlgAddPergunta.IsOpen = false;
+            AtualizarPerguntas();
         }
 
     }
