@@ -10,7 +10,19 @@
     <Expander MouseDoubleClick="ExpPergunta_MouseDoubleClick"
         Name="expPergunta"
                 HorizontalAlignment="Stretch"
-                Header="Pergunta 01">
+                >
+        <Expander.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="46"/>
+                </Grid.ColumnDefinitions>
+                <TextBox FontSize="22" Name="txtTextoPergunta" GotFocus="txtTextoPergunta_GotFocus">Pergunta 01</TextBox>
+                <Button Name="btnSalvar" Click="btnSalvar_Click" Style="{DynamicResource MaterialDesignFlatAccentButton}" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" >
+                    <materialDesign:PackIcon Kind="ContentSave" />
+                </Button>
+            </Grid>
+        </Expander.Header>
         <Grid Margin="24,8,24,16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="46"/>
@@ -26,7 +38,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="0" Margin="8,0,0,0" ></ToggleButton>
+            <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="0" Margin="8,0,0,0" Click="tgbDissertativa_Click" ></ToggleButton>
             <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,5">Pergunta dissertativa</TextBlock>
 
             <ToggleButton Name="tgbTopQuiz" Grid.Column="0" Grid.Row="1" Margin="8,0,0,0" ></ToggleButton>
@@ -43,6 +55,8 @@
 
             <RadioButton Name="rdbRespostaD" GroupName="{Binding RelativeSource={RelativeSource Self}, Path=Parent.Parent.Parent.Parent.Header}" Style="{StaticResource MaterialDesignActionToggleButton}" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="5"/>
             <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" Text="Resposta D" Grid.Column="1" Grid.Row="5"></TextBox>
+
+            <TextBox Name="txtRespostaDissertativa" TextWrapping="Wrap" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="4" Style="{DynamicResource MaterialDesignTextBox}" Margin="10" materialDesign:TextFieldAssist.HasFilledTextField="True" Visibility="Hidden"/>
 
             <Button Name="btnDeletar" Style="{DynamicResource MaterialDesignFlatAccentButton}" Foreground="#FFB24242" Grid.ColumnSpan="2" Grid.Row="6" Click="BtnDeletar_Click">
                 <StackPanel Orientation="Horizontal">

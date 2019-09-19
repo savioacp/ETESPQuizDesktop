@@ -13,8 +13,36 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Grupo F - Quiz" Width="1142.649" Height="597" Loaded="Window_Loaded">
-    <Grid>
+        Title="Grupo F - Quiz" Width="1142.649" Height="597" Loaded="Window_Loaded" Closing="Window_Closing">
+    <materialDesign:DialogHost Name="dlgConfirmarFechar" IsOpen="False" CloseOnClickAway="True">
+        <materialDesign:DialogHost.DialogContent>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Sair" FontSize="16" FontWeight="SemiBold" Grid.ColumnSpan="2"/>
+                <TextBlock Grid.ColumnSpan="2" Text="Deseja realmente fechar o aplicativo?" Margin="15" Grid.Row="1"/>
+                <Button Name="btnVoltarFechar" Grid.Row="2" Grid.Column="0" Style="{DynamicResource MaterialDesignFlatButton}" Padding="0" Foreground="#FF999999" Click="BtnVoltarFechar_Click">
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <materialDesign:PackIcon Kind="ArrowBack"/>
+                        <TextBlock Text="Voltar" Margin="3,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button Name="btnConfirmarFechar" Grid.Row="2" Grid.Column="1" Style="{DynamicResource MaterialDesignFlatButton}" Padding="0" Foreground="#FFB24242" Click="BtnConfirmarFechar_Click">
+                    <StackPanel Orientation="Horizontal" Margin="0">
+                        <materialDesign:PackIcon Kind="Close"/>
+                        <TextBlock Text="Sim" Margin="3,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
         <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource SecondaryAccentBrush}" Width="178" MinWidth="178" MaxWidth="250" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Left" Width="178" MinWidth="178" MaxWidth="250"  >
                 <Image Height="107" Source="Images\logo.png" Margin="10,10,10,20" RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill" />
@@ -35,7 +63,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                    <Separator Style="{StaticResource MaterialDesignSeparator}"  Background="{DynamicResource SecondaryAccentBrush}"/>
 
                     <Button Name="mnuBtnPerguntas" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
                         <StackPanel Orientation="Horizontal" Width="160">
@@ -87,7 +115,7 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <materialDesign:DialogHost Name="dlgAddEquipe" IsOpen="False">
+                    <materialDesign:DialogHost Name="dlgAddEquipe" IsOpen="False" CloseOnClickAway="True">
                     <materialDesign:DialogHost.DialogContent>
                         <materialDesign:Card Width="250">
                             <Grid>
@@ -164,7 +192,7 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <materialDesign:DialogHost Name="dlgAddPergunta" IsOpen="False">
+                    <materialDesign:DialogHost Name="dlgAddPergunta" IsOpen="False" CloseOnClickAway="True">
                     <materialDesign:DialogHost.DialogContent>
                         <materialDesign:Card Width="700">
                             <Grid Margin="15">
@@ -210,11 +238,11 @@
 
                                 <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick">
                                     <Grid>
-                                        <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" />
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <materialDesign:PackIcon Kind="GestureDoubleTap" Width="32" Height="32" HorizontalAlignment="Center"/>
                                             <TextBlock Text="Duplo clique para editar a imagem" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
                                         </StackPanel>
+                                        <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Source="pfvr.bin"/>
                                     </Grid>
                                 </ContentControl>
                                 <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="8" Click="btnVoltarAdicionarPergunta_Click" Foreground="#FF999999" Grid.ColumnSpan="2">
@@ -241,7 +269,7 @@
                             <RowDefinition Height="60"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock FontSize="36" Grid.Column="0"  Margin="15,8,0,0" FontFamily="MV Boli">Questões</TextBlock>
+                        <TextBlock FontSize="36" Grid.Column="0"  Margin="15,8,0,0">Questões</TextBlock>
                         <Button  Name="btnAdicionarPergunta" Click="BtnAdicionarPergunta_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
                             <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
                         </Button>
@@ -259,4 +287,5 @@
         <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" Name="snackbarNotifications" />
 
     </Grid>
+    </materialDesign:DialogHost>
 </Window>

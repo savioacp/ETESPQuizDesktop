@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using System.Drawing;
+using Microsoft.Win32;
 
 namespace QuizV2
 {
@@ -25,8 +26,6 @@ namespace QuizV2
     
 	public partial class MainWindow : Window
 	{
-        Equipe[] equipes;
-        Pergunta[] perguntas;
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -57,9 +56,9 @@ namespace QuizV2
         public static void AtualizarEquipes()
         {
             MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
-            currentWindow.equipes = Data.DataManager.GetEquipes();
+            Data.Cache.Equipes = Data.DataManager.GetEquipes();
             currentWindow.wrpEquipes.Children.Clear();
-            foreach (Equipe eq in currentWindow.equipes)
+            foreach (Equipe eq in Data.Cache.Equipes)
             {
                 currentWindow.wrpEquipes.Children.Add(new EquipeCard(eq));
             }
@@ -68,9 +67,9 @@ namespace QuizV2
         public static void AtualizarPerguntas()
         {
             MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
-            currentWindow.perguntas = Data.DataManager.GetPerguntas();
+            Data.Cache.Perguntas = Data.DataManager.GetPerguntas();
             currentWindow.stpPerguntas.Children.Clear();
-            foreach (Pergunta pergunta in currentWindow.perguntas)
+            foreach (Pergunta pergunta in Data.Cache.Perguntas)
             {
                 currentWindow.stpPerguntas.Children.Add(new PerguntaExpander(pergunta));
             }
@@ -109,10 +108,19 @@ namespace QuizV2
         {
             dlgAddPergunta.IsOpen = true;
         }
-
+        
         private void CtcImagem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("");
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Title = "Escolha uma imagem do computador.",
+                Filter = "Arquivos de imagem (*.png; *.jpg; *.bmp) | *.png; *.jpg; *.bmp"
+            };
+
+            if(ofd.ShowDialog() == true)
+            {
+                img1.Source = new BitmapImage(new Uri(ofd.FileName));
+            }
         }
 
         private void tgbDissertativa_Click(object sender, RoutedEventArgs e)
@@ -157,34 +165,66 @@ namespace QuizV2
         }
         private void btnConfirmarAdicionarPergunta_Click(object sender, RoutedEventArgs e)
         {
-            string correta = "";
-            if (rdbRespostaA.IsChecked ?? false) correta = txtRespostaA.Text;
-            if (rdbRespostaB.IsChecked ?? false) correta = txtRespostaB.Text;
-            if (rdbRespostaC.IsChecked ?? false) correta = txtRespostaC.Text;
-            if (rdbRespostaD.IsChecked ?? false) correta = txtRespostaD.Text;
-
-            var vazia = BitmapSource.Create(2, 2, 96, 96, PixelFormats.Indexed1, new BitmapPalette(new List<System.Windows.Media.Color> { Colors.Transparent }), new byte[] { 0, 0, 0, 0 }, 1);
-            var bmpVazio = new Bitmap(96, 96);
-
-            System.Drawing.Image image;
-            if (img1.Source == null)
-                image = bmpVazio;
-            else
-                image = Serializa.GetImageFromImageSource(img1.Source);
-
-            Pergunta pergunta = new Pergunta
+            if (tgbDissertativa.IsChecked == true)
             {
-                Texto = txtTextoPergunta.Text,
-                Imagem = image,
-                TopQuiz = tgbTopQuiz.IsChecked ?? false,
-                Correta = correta,
-                Respostas = new [] { txtRespostaA.Text, txtRespostaB.Text, txtRespostaC.Text, txtRespostaD.Text },              
-            };
 
-            Data.DataManager.AddPergunta(pergunta);
-            dlgAddPergunta.IsOpen = false;
+                Pergunta pergunta = new Pergunta
+                {
+                    Texto = txtTextoPergunta.Text,
+                    Imagem = Serializa.GetImageFromImageSource(img1.Source),
+                    TopQuiz = tgbTopQuiz.IsChecked ?? false,
+                    Correta = txtRespostaDissertativa.Text,
+                    Respostas = new[] { txtRespostaDissertativa.Text }
+                };
+
+                Data.DataManager.AddPergunta(pergunta);
+                dlgAddPergunta.IsOpen = false;
+            }
+            else
+            { 
+                string correta = "";
+                if (rdbRespostaA.IsChecked ?? false) correta = txtRespostaA.Text;
+                if (rdbRespostaB.IsChecked ?? false) correta = txtRespostaB.Text;
+                if (rdbRespostaC.IsChecked ?? false) correta = txtRespostaC.Text;
+                if (rdbRespostaD.IsChecked ?? false) correta = txtRespostaD.Text;
+
+                var vazia = BitmapSource.Create(2, 2, 96, 96, PixelFormats.Indexed1, new BitmapPalette(new List<System.Windows.Media.Color> { Colors.Transparent }), new byte[] { 0, 0, 0, 0 }, 1);
+                var bmpVazio = new Bitmap(Properties.Resources.transparente as System.Drawing.Image);
+                        
+
+                Pergunta pergunta = new Pergunta
+                {
+                    Texto = txtTextoPergunta.Text,
+                    Imagem = Serializa.GetImageFromImageSource(img1.Source),
+                    TopQuiz = tgbTopQuiz.IsChecked ?? false,
+                    Correta = correta,
+                    Respostas = new [] { txtRespostaA.Text, txtRespostaB.Text, txtRespostaC.Text, txtRespostaD.Text },              
+                };
+
+                Data.DataManager.AddPergunta(pergunta);
+                dlgAddPergunta.IsOpen = false;
+            }
+            Notificar("Pergunta adicionada com sucesso!");
             AtualizarPerguntas();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(!dlgConfirmarFechar.IsOpen)
+            {
+                e.Cancel = true;
+                dlgConfirmarFechar.IsOpen = true;
+            }
+        }
+
+        private void BtnConfirmarFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void BtnVoltarFechar_Click(object sender, RoutedEventArgs e)
+        {
+            dlgConfirmarFechar.IsOpen = false;
+        }
     }
 }

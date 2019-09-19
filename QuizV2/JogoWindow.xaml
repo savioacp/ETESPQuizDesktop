@@ -13,27 +13,28 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Grupo F - Quiz" Width="1142" Height="599">
+        Title="Grupo F - Quiz" Width="1280" Height="720">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="285*"/>
-            <RowDefinition Height="283*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="232*"/>
-            <ColumnDefinition Width="335*"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Justify" TextWrapping="Wrap" Height="108" FontSize="28" Margin="20,140,20,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Justify" TextWrapping="Wrap" Height="108" FontSize="28" Margin="10,69,30,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
             Teste de pergunta bem grande que da pra ver se funcionando a quebra de linha quebra de linha quebra de linha quebra de linha quebra de linhaquebra de linha
         </TextBlock>
 
-        <Image Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.Row="1" Margin="25"></Image>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="25">
+        <Image Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Row="1" Margin="20"/>
+        <StackPanel Grid.Column="1" Margin="20" Grid.Row="1">
             <TextBlock FontSize="24" Margin="5">A) Resposta A</TextBlock>
             <TextBlock FontSize="24" Margin="5">B) Resposta B</TextBlock>
-            <TextBlock FontSize="24" Margin="5">C) Resposta C</TextBlock>
-            <TextBlock FontSize="24" Margin="5">D) Resposta D</TextBlock>
+            <TextBlock FontSize="24" Margin="5"><Run Text="C) Resposta C"/></TextBlock>
+            <TextBlock FontSize="24" Margin="5"><Run Text="D) Resposta D"/></TextBlock>
         </StackPanel>
 
     </Grid>

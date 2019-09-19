@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.Drawing.Imaging;
+using System.Windows;
 
 namespace QuizV2
 {
@@ -25,35 +26,23 @@ namespace QuizV2
             return (Image)converter.ConvertFrom(imageArray);
         }
 
-        public static ImageSource GetImageSourceFromImage(Image image)
+        public static ImageSource GetImageSourceFromImage(byte[] image)
         {
-            using (var ms = new MemoryStream())
-            {
-                image.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                ms.Seek(0, SeekOrigin.Begin);
+            string path = Path.GetTempFileName() + ".quiz";
+            File.WriteAllBytes(path, image);
+            var bmpImage = new BitmapImage();
 
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.StreamSource = ms;
-                bitmapImage.EndInit();
+            bmpImage.BeginInit();
+            bmpImage.UriSource = new Uri(path);
+            bmpImage.CacheOption = BitmapCacheOption.OnLoad;
+            bmpImage.EndInit();
 
-                return bitmapImage;
-            }
+            return bmpImage;
         }
 
-        public static Image GetImageFromImageSource(ImageSource imageSource)
+        public static byte[] GetImageFromImageSource(ImageSource imageSource)
         {
-            var encoder = new BmpBitmapEncoder();
-            using(var ms = new MemoryStream())
-            {
-                encoder.Frames.Add(BitmapFrame.Create(imageSource as BitmapSource));
-                encoder.Save(ms);
-                ms.Position = 0;
-
-                Bitmap bitmap = new Bitmap(ms);
-                return bitmap;                
-            }
+            return File.ReadAllBytes((imageSource as BitmapImage).UriSource.LocalPath);            
         }
     }
 }

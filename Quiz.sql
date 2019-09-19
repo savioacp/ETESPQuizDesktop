@@ -9,34 +9,34 @@ use Quiz
 -- se houver login do QUIZ:
 create table tblUsuario (
 	IdUsuario int identity(1, 1) primary key,
-	NomeUsuario varchar(25),
+	NomeUsuario nvarchar(25),
 	Senha char(64)
 )
 
 -- Equipes e Integrantes
 create table tblEquipe(
 	IdEquipe int identity(1, 1) primary key,
-	NomeEquipe varchar(25),
-	CorEquipe varchar(8)
+	NomeEquipe nvarchar(25),
+	CorEquipe nvarchar(8)
 )
 
 create table tblIntegrante(
 	--IdIntegrante int primary key, -- RM, senão inútil
 	IdEquipe int foreign key references tblEquipe,
-	NomeIntegrante varchar (20)
+	NomeIntegrante nvarchar (20)
 )
 
 -- Perguntas e Respostas
 create table tblPergunta(
 	IdPergunta int identity(1, 1) primary key,
-	Texto varchar(512),
+	Texto nvarchar(512),
 	Imagem varbinary(MAX),
 	TopQuiz bit
 )
 
 create table tblResposta(
 	IdPergunta int foreign key references tblPergunta,
-	Texto varchar(48),
+	Texto nvarchar(48),
 	Correta bit
 )
 
@@ -146,6 +146,15 @@ insert into tblIntegrante values (15, 'Integrante 03')
 insert into tblIntegrante values (15, 'Integrante 04')
 insert into tblIntegrante values (15, 'Integrante 05')
 
-select * from tblPergunta 
 
+insert into tblPergunta select 'Quem é o personagem Sans, de Undertale?', BulkColumn, '1' from openrowset(bulk N'G:\proyetitos\QuizV2\sans_thumbnail.png', SINGLE_BLOB) as img
+insert into tblResposta values  (1, 'O Esqueleto', 0),
+								(1, 'Um Esqueleto', 0),	
+								(1, 'Ele', 1),
+								(1, 'SnaS', 0)
+
+select * from tblEquipe
+select * from tblIntegrante where IdEquipe=1
+
+select * from tblPergunta 
 select * from tblResposta where IdPergunta=1

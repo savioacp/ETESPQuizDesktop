@@ -21,7 +21,7 @@ namespace QuizV2
         public string Texto;
         public bool TopQuiz;
 		public bool TemImagem;
-        public System.Drawing.Image Imagem;
+        public byte[] Imagem;
         public string Correta = null;
         public string[] Respostas;
 

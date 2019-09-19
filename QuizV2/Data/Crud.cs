@@ -60,8 +60,8 @@ namespace QuizV2.Data
 			{
 				CommandText = "insert tblPergunta output INSERTED.IdPergunta values (@Texto, @Imagem, @TopQuiz)"
             };
-			cmd.Parameters.AddWithValue("@Texto", pergunta.Texto);
-            cmd.Parameters.AddWithValue("@Imagem", Serializa.GetBytesFromImage(pergunta.Imagem));
+			cmd.Parameters.Add("@Texto", SqlDbType.NVarChar).Value = pergunta.Texto;
+            cmd.Parameters.Add("@Imagem", SqlDbType.VarBinary).Value = pergunta.Imagem;
             cmd.Parameters.Add("@TopQuiz", SqlDbType.Bit).Value = pergunta.TopQuiz;
 			cmd.Connection = conexao.Conectar();
 			int id = (int)cmd.ExecuteScalar();
@@ -78,9 +78,9 @@ namespace QuizV2.Data
 			{
 				CommandText = "insert tblResposta values (@IdPergunta, @Texto, @Correta)"
 			};
-			cmd.Parameters.AddWithValue("@IdPergunta", Id);
-            cmd.Parameters.AddWithValue("@Texto", Texto);
-            cmd.Parameters.AddWithValue("@Correta", Correta);
+			cmd.Parameters.Add("@IdPergunta", SqlDbType.Int).Value = Id;
+            cmd.Parameters.Add("@Texto", SqlDbType.NVarChar).Value = Texto;
+            cmd.Parameters.Add("@Correta", SqlDbType.Bit).Value = Correta;
             cmd.Connection = conexao.Conectar();
             cmd.ExecuteNonQuery();
         }
@@ -148,7 +148,7 @@ namespace QuizV2.Data
                 {
                     Id = int.Parse(row["IdPergunta"].ToString()),
                     Texto = row["Texto"].ToString(),
-                    Imagem = Serializa.GetImageFromBytes(row["Imagem"] as byte[]),
+                    Imagem = row["Imagem"] as byte[],
                     Respostas = respostas,
                     Correta = correta,
                     TopQuiz = row["TopQuiz"] as bool? ?? false
@@ -209,7 +209,7 @@ namespace QuizV2.Data
             {
                 CommandText = "update tblEquipe set NomeEquipe=@Nome where IdEquipe=@Id"
             };
-            cmd.Parameters.Add("@Nome", SqlDbType.VarChar).Value = newEquipe.Nome;
+            cmd.Parameters.Add("@Nome", SqlDbType.NVarChar).Value = newEquipe.Nome;
 			cmd.Parameters.Add("@Id", SqlDbType.Int).Value = IdEquipe;
 
 			cmd.Connection = conexao.Conectar();
@@ -225,16 +225,75 @@ namespace QuizV2.Data
 															"(@IdEquipe, @Nome5)"
 			};
 			cmd.Parameters.Add("@IdEquipe", SqlDbType.Int).Value = IdEquipe;
-			cmd.Parameters.Add("@Nome1", SqlDbType.VarChar).Value = newEquipe.Integrantes[0];
-			cmd.Parameters.Add("@Nome2", SqlDbType.VarChar).Value = newEquipe.Integrantes[1];
-			cmd.Parameters.Add("@Nome3", SqlDbType.VarChar).Value = newEquipe.Integrantes[2];
-			cmd.Parameters.Add("@Nome4", SqlDbType.VarChar).Value = newEquipe.Integrantes[3];
-			cmd.Parameters.Add("@Nome5", SqlDbType.VarChar).Value = newEquipe.Integrantes[4];
+			cmd.Parameters.Add("@Nome1", SqlDbType.NVarChar).Value = newEquipe.Integrantes[0];
+			cmd.Parameters.Add("@Nome2", SqlDbType.NVarChar).Value = newEquipe.Integrantes[1];
+			cmd.Parameters.Add("@Nome3", SqlDbType.NVarChar).Value = newEquipe.Integrantes[2];
+			cmd.Parameters.Add("@Nome4", SqlDbType.NVarChar).Value = newEquipe.Integrantes[3];
+			cmd.Parameters.Add("@Nome5", SqlDbType.NVarChar).Value = newEquipe.Integrantes[4];
 			cmd.Connection = conexao.Conectar();
 			cmd.ExecuteNonQuery();
 
         }
 
+        public static void UpdatePergunta(int IdPergunta, Pergunta NewPergunta)
+        {
+            cmd = new SqlCommand
+            {
+                CommandText = "update tblPergunta set Texto=@Texto, Imagem=@Imagem, TopQuiz=@TopQuiz where IdPergunta=@Id"
+            };
+
+            cmd.Parameters.Add("@Texto", SqlDbType.NVarChar).Value = NewPergunta.Texto;
+            cmd.Parameters.Add("@Imagem", SqlDbType.VarBinary).Value = NewPergunta.Imagem;
+            cmd.Parameters.Add("@TopQuiz", SqlDbType.Bit).Value = NewPergunta.TopQuiz;
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = NewPergunta.Id;
+
+            cmd.Connection = conexao.Conectar();
+            cmd.ExecuteNonQuery();
+
+            DeleteRespostas(IdPergunta);
+            cmd = new SqlCommand
+            {
+                CommandText = "insert tblPergunta values (@IdPergunta, @Texto1, @Correta1)" +
+                                                        "(@IdPergunta, @Texto2, @Correta2)" +
+                                                        "(@IdPergunta, @Texto3, @Correta3)" +
+                                                        "(@IdPergunta, @Texto4, @Correta4)"
+            };
+
+            cmd.Parameters.Add("@IdPergunta", SqlDbType.Int).Value = IdPergunta;
+            cmd.Parameters.Add("@Texto1", SqlDbType.NVarChar).Value = NewPergunta.Respostas[0];
+            cmd.Parameters.Add("@Texto2", SqlDbType.NVarChar).Value = NewPergunta.Respostas[1];
+            cmd.Parameters.Add("@Texto3", SqlDbType.NVarChar).Value = NewPergunta.Respostas[2];
+            cmd.Parameters.Add("@Texto4", SqlDbType.NVarChar).Value = NewPergunta.Respostas[3];
+
+            cmd.Parameters.Add("@Correta1", SqlDbType.Bit).Value = NewPergunta.Respostas[0] == NewPergunta.Correta;
+            cmd.Parameters.Add("@Correta2", SqlDbType.Bit).Value = NewPergunta.Respostas[1] == NewPergunta.Correta;
+            cmd.Parameters.Add("@Correta3", SqlDbType.Bit).Value = NewPergunta.Respostas[2] == NewPergunta.Correta;
+            cmd.Parameters.Add("@Correta4", SqlDbType.Bit).Value = NewPergunta.Respostas[3] == NewPergunta.Correta;
+        }
+        public static void DeletePergunta(Pergunta pergunta)
+        {
+            cmd = new SqlCommand
+            {
+                CommandText = "delete from tblEquipe where IdPergunta=@Id"
+            };
+
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = pergunta.Id;
+            cmd.Connection = conexao.Conectar();
+            cmd.ExecuteNonQuery();
+            DeleteRespostas(pergunta.Id);
+        }
+
+        private static void DeleteRespostas(int IdPergunta)
+        {
+            cmd = new SqlCommand
+            {
+                CommandText = "delete from tblRespostas where IdPergunta=@Id"
+            };
+
+            cmd.Parameters.Add("@Id", SqlDbType.Int).Value = IdPergunta;
+            cmd.Connection = conexao.Conectar();
+            cmd.ExecuteNonQuery();
+        }
     }
 
 
