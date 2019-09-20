@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Cache.cs" />
     <Compile Include="Data\Conexao.cs" />
     <Compile Include="Data\Crud.cs" />
     <Compile Include="EquipeCard.xaml.cs">
