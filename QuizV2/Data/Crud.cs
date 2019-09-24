@@ -253,7 +253,7 @@ namespace QuizV2.Data
             DeleteRespostas(IdPergunta);
             cmd = new SqlCommand
             {
-                CommandText = "insert tblPergunta values (@IdPergunta, @Texto1, @Correta1)" +
+                CommandText = "insert tblResposta values (@IdPergunta, @Texto1, @Correta1)" +
                                                         "(@IdPergunta, @Texto2, @Correta2)" +
                                                         "(@IdPergunta, @Texto3, @Correta3)" +
                                                         "(@IdPergunta, @Texto4, @Correta4)"
@@ -287,7 +287,7 @@ namespace QuizV2.Data
         {
             cmd = new SqlCommand
             {
-                CommandText = "delete from tblRespostas where IdPergunta=@Id"
+                CommandText = "delete from tblResposta where IdPergunta=@Id"
             };
 
             cmd.Parameters.Add("@Id", SqlDbType.Int).Value = IdPergunta;

@@ -63,8 +63,7 @@ namespace QuizV2
 				Nome = txtNomeEquipe.Content.ToString(),
 				Integrantes = new string[] { txtMembro1.Text, txtMembro2.Text, txtMembro3.Text, txtMembro4.Text, txtMembro5.Text },
 				Cor = equipe.Cor,
-				Id = equipe.Id,
-				Pontuação = equipe.Pontuação
+				Id = equipe.Id
 			};
 
 			Data.DataManager.UpdateEquipe(equipe.Id, newEquipe);

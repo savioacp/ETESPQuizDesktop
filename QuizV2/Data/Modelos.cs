@@ -12,7 +12,6 @@ namespace QuizV2
         public string Nome;
         public string Cor;
         public string[] Integrantes;
-        public int Pontuação;
     }
 
     public class Pergunta
@@ -20,7 +19,13 @@ namespace QuizV2
         public int Id;
         public string Texto;
         public bool TopQuiz;
-		public bool TemImagem;
+		public bool TemImagem
+        {
+            get
+            {
+                return Imagem != null;
+            }
+        }
         public byte[] Imagem;
         public string Correta = null;
         public string[] Respostas;
@@ -33,6 +38,31 @@ namespace QuizV2
 			}
 		}
 	}
+
+    public class EquipeParticipando : Equipe
+    {
+        public int Erros;
+        public int Pontos;
+        public bool Eliminada
+        {
+            get
+            {
+                return Erros > Data.Cache.ErrosEliminantes;
+            }
+            set {
+                if (value) Erros = Data.Cache.ErrosEliminantes;
+            }
+        }
+        public void Acerto(bool sozinha)
+        {
+            Erros = sozinha ? Erros + 1 : Erros + 2;
+        }
+
+        public void Erro()
+        {
+            Erros++;
+        }
+    }
 
     
 

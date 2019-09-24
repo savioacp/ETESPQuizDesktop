@@ -10,5 +10,6 @@ namespace QuizV2.Data
     {
         public static Equipe[] Equipes { get; set; }
         public static Pergunta[] Perguntas { get; set; }
+        public static int ErrosEliminantes { get; set; }
     }
 }

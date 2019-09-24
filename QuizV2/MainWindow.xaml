@@ -96,7 +96,7 @@
                 <Grid>
                     <WrapPanel>
                         <materialDesign:Card>
-                            <Button Name="btnIniciarJogo" Content="Iniciar mas nem tanto"/>
+                                <Button Name="btnIniciarJogo" Content="Iniciar mas nem tanto" Click="btnIniciarJogo_Click"/>
                         </materialDesign:Card>
 
                         <Grid Height="128" Width="128">
@@ -242,7 +242,7 @@
                                             <materialDesign:PackIcon Kind="GestureDoubleTap" Width="32" Height="32" HorizontalAlignment="Center"/>
                                             <TextBlock Text="Duplo clique para editar a imagem" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
                                         </StackPanel>
-                                        <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Source="pfvr.bin"/>
+                                        <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform"/>
                                     </Grid>
                                 </ContentControl>
                                 <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="8" Click="btnVoltarAdicionarPergunta_Click" Foreground="#FF999999" Grid.ColumnSpan="2">

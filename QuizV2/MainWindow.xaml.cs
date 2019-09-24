@@ -20,24 +20,23 @@ using Microsoft.Win32;
 namespace QuizV2
 {
 	/// <summary>
-	/// Interação lógica para MainWindow.xam
+	/// Interação lógica para MainWindow.xaml
 	/// </summary>
-    /// CMB WAZ HERE
     
 	public partial class MainWindow : Window
 	{
 		public MainWindow()
 		{
 			InitializeComponent();
-			mnuBtnJogo.Click += new RoutedEventHandler((_, __) => contentTransitioner.SelectedIndex = 0);
-			mnuBtnEquipes.Click += new RoutedEventHandler((_, __) => contentTransitioner.SelectedIndex = 1);
-			mnuBtnPerguntas.Click += new RoutedEventHandler((_,__) => contentTransitioner.SelectedIndex = 2);
-			mnuBtnSobre.Click += new RoutedEventHandler((_,__) => contentTransitioner.SelectedIndex = 3);
+			mnuBtnJogo.Click += (_, __) => contentTransitioner.SelectedIndex = 0;
+			mnuBtnEquipes.Click += (_, __) => contentTransitioner.SelectedIndex = 1;
+			mnuBtnPerguntas.Click += (_,__) => contentTransitioner.SelectedIndex = 2;
+			mnuBtnSobre.Click += (_,__) => contentTransitioner.SelectedIndex = 3;
 		}
 
 		public void btnIniciarJogo_Click(object sender, RoutedEventArgs e)
 		{
-			;
+            (new JogoWindow()).Show();
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -50,7 +49,7 @@ namespace QuizV2
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("Não, isso não funciona...");//será?
+			MessageBox.Show("Não, isso não funciona...");
 		}
 
         public static void AtualizarEquipes()
@@ -88,7 +87,7 @@ namespace QuizV2
         private void btnConfirmarAdicionar_Click(object sender, RoutedEventArgs e)
         {
 
-            Equipe toAdd = new Equipe()  //
+            Equipe toAdd = new Equipe()  
             { 
                 Integrantes =  new[] {txtAddEquipeIntegrante1.Text, txtAddEquipeIntegrante2.Text, txtAddEquipeIntegrante3.Text, txtAddEquipeIntegrante4.Text, txtAddEquipeIntegrante5.Text },
                 Nome = txtAddEquipeNome.Text,
@@ -190,7 +189,7 @@ namespace QuizV2
 
                 var vazia = BitmapSource.Create(2, 2, 96, 96, PixelFormats.Indexed1, new BitmapPalette(new List<System.Windows.Media.Color> { Colors.Transparent }), new byte[] { 0, 0, 0, 0 }, 1);
                 var bmpVazio = new Bitmap(Properties.Resources.transparente as System.Drawing.Image);
-                        
+
 
                 Pergunta pergunta = new Pergunta
                 {

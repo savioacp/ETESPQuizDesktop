@@ -7,11 +7,11 @@ go
 use Quiz
 
 -- se houver login do QUIZ:
-create table tblUsuario (
-	IdUsuario int identity(1, 1) primary key,
-	NomeUsuario nvarchar(25),
-	Senha char(64)
-)
+--create table tblUsuario (
+--	IdUsuario int identity(1, 1) primary key,
+--	NomeUsuario nvarchar(25),
+--	Senha char(64)
+--)
 
 -- Equipes e Integrantes
 create table tblEquipe(
@@ -147,7 +147,7 @@ insert into tblIntegrante values (15, 'Integrante 04')
 insert into tblIntegrante values (15, 'Integrante 05')
 
 
-insert into tblPergunta select 'Quem é o personagem Sans, de Undertale?', BulkColumn, '1' from openrowset(bulk N'G:\proyetitos\QuizV2\sans_thumbnail.png', SINGLE_BLOB) as img
+insert into tblPergunta select 'Quem é o personagem Sans, de Undertale?', BulkColumn, '1' from openrowset(bulk N'E:\proyetitos\QuizV2\sans_thumbnail.png', SINGLE_BLOB) as img
 insert into tblResposta values  (1, 'O Esqueleto', 0),
 								(1, 'Um Esqueleto', 0),	
 								(1, 'Ele', 1),
