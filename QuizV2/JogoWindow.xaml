@@ -42,7 +42,7 @@
                 </Button>
             </Grid>
         </materialDesign:DialogHost.DialogContent>
-        <materialDesign:Transitioner SelectedIndex="1" Name="Transitioner">
+        <materialDesign:Transitioner SelectedIndex="0" Name="Transitioner">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromTop}">
                 <materialDesign:TransitionerSlide.ForwardWipe>
                     <materialDesign:FadeWipe />
@@ -57,20 +57,20 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="22*" />
+                        <ColumnDefinition Width="31*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Center" TextWrapping="Wrap" Height="108" FontSize="28" Margin="30" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                    <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Center" TextWrapping="Wrap" Height="108" FontSize="28" Margin="30,61" VerticalAlignment="Center" Grid.ColumnSpan="2">
                         Teste de pergunta bem grande que da pra ver se funcionando a quebra de linha quebra de linha quebra de linha quebra de linha quebra de linhaquebra de linha
                     </TextBlock>
 
-                    <Image Name="img" Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Row="1" Margin="20" VerticalAlignment="Top"/>
-                    <StackPanel Name="aaaaaa" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" Grid.Row="1">
-                        <TextBlock Name="txtRespostaA" FontSize="24" Margin="5">A) Resposta A</TextBlock>
-                        <TextBlock Name="txtRespostaB" FontSize="24" Margin="5">B) Resposta B</TextBlock>
-                        <TextBlock Name="txtRespostaC" FontSize="24" Margin="5">C) Resposta C</TextBlock>
-                        <TextBlock Name="txtRespostaD" FontSize="24" Margin="5">D) Resposta D</TextBlock>
+                    <Image Name="img" Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Row="1" Margin="20,20,20,0" VerticalAlignment="Top" Height="344"/>
+                    <StackPanel Name="aaaaaa" Grid.Column="1" Margin="20" Grid.Row="1">
+                        <TextBlock Name="txtRespostaA" FontSize="18" Margin="5" TextWrapping="Wrap">A) Resposta A</TextBlock>
+                        <TextBlock Name="txtRespostaB" FontSize="18" Margin="5" TextWrapping="Wrap">B) Resposta B</TextBlock>
+                        <TextBlock Name="txtRespostaC" FontSize="18" Margin="5" TextWrapping="Wrap">C) Resposta C</TextBlock>
+                        <TextBlock Name="txtRespostaD" FontSize="18" Margin="5" TextWrapping="Wrap">D) Resposta D</TextBlock>
                     </StackPanel>
                 </Grid>
             </materialDesign:TransitionerSlide>

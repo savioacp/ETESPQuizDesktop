@@ -36,7 +36,7 @@ create table tblPergunta(
 
 create table tblResposta(
 	IdPergunta int foreign key references tblPergunta,
-	Texto nvarchar(48),
+	Texto nvarchar(256),
 	Correta bit
 )
 
@@ -153,6 +153,12 @@ insert into tblResposta values  (1, 'O Esqueleto', 0),
 								(1, 'Um Esqueleto', 0),	
 								(1, 'Ele', 1),
 								(1, 'SnaS', 0)
+
+insert into tblPergunta select 'Com base exclusivamente nos dados apresentados no gráfico quanto à cotação do dólar comercial no último dia útil de cada mês de 2015, assinale a alternativa correta.', BulkColumn, '1' from openrowset(bulk N'E:\proyetitos\QuizV2\GRAFICO000.png', SINGLE_BLOB) as img
+insert into tblResposta values  (2, 'Em dezembro de 2014, a cotação do dólar comercial foi menor que 2,689', 0),
+								(2, 'O maior valor para a cotação do dólar comercial foi verificado em 28 de setembro.', 0),
+								(2, 'A função que representa o valor da cotação do dólar comercial em relação ao tempo é crescente, no intervalo apresentado no gráfico.', 0),
+								(2, 'A diferença entre os valores da cotação do dólar comercial de maio e de março foi menor que um centavo de real.', 1)
 
 select * from tblEquipe
 select * from tblIntegrante where IdEquipe=1
