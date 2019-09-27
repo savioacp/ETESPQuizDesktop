@@ -61,7 +61,11 @@ namespace QuizV2.Data
 				CommandText = "insert tblPergunta output INSERTED.IdPergunta values (@Texto, @Imagem, @TopQuiz)"
             };
 			cmd.Parameters.Add("@Texto", SqlDbType.NVarChar).Value = pergunta.Texto;
-            cmd.Parameters.Add("@Imagem", SqlDbType.VarBinary).Value = pergunta.Imagem;
+            cmd.Parameters.Add("@Imagem", SqlDbType.VarBinary);
+            if (pergunta.TemImagem)
+                cmd.Parameters["@Imagem"].Value = pergunta.Imagem;
+            else
+                cmd.Parameters["@Imagem"].Value = DBNull.Value;
             cmd.Parameters.Add("@TopQuiz", SqlDbType.Bit).Value = pergunta.TopQuiz;
 			cmd.Connection = conexao.Conectar();
 			int id = (int)cmd.ExecuteScalar();
@@ -243,7 +247,11 @@ namespace QuizV2.Data
             };
 
             cmd.Parameters.Add("@Texto", SqlDbType.NVarChar).Value = NewPergunta.Texto;
-            cmd.Parameters.Add("@Imagem", SqlDbType.VarBinary).Value = NewPergunta.Imagem;
+            cmd.Parameters.Add("@Imagem", SqlDbType.VarBinary);
+            if (NewPergunta.TemImagem)
+                cmd.Parameters["@Imagem"].Value = NewPergunta.Imagem;
+            else
+                cmd.Parameters["@Imagem"].Value = DBNull.Value;
             cmd.Parameters.Add("@TopQuiz", SqlDbType.Bit).Value = NewPergunta.TopQuiz;
             cmd.Parameters.Add("@Id", SqlDbType.Int).Value = NewPergunta.Id;
 
@@ -253,9 +261,9 @@ namespace QuizV2.Data
             DeleteRespostas(IdPergunta);
             cmd = new SqlCommand
             {
-                CommandText = "insert tblResposta values (@IdPergunta, @Texto1, @Correta1)" +
-                                                        "(@IdPergunta, @Texto2, @Correta2)" +
-                                                        "(@IdPergunta, @Texto3, @Correta3)" +
+                CommandText = "insert tblResposta values (@IdPergunta, @Texto1, @Correta1)," +
+                                                        "(@IdPergunta, @Texto2, @Correta2)," +
+                                                        "(@IdPergunta, @Texto3, @Correta3)," +
                                                         "(@IdPergunta, @Texto4, @Correta4)"
             };
 
@@ -269,12 +277,14 @@ namespace QuizV2.Data
             cmd.Parameters.Add("@Correta2", SqlDbType.Bit).Value = NewPergunta.Respostas[1] == NewPergunta.Correta;
             cmd.Parameters.Add("@Correta3", SqlDbType.Bit).Value = NewPergunta.Respostas[2] == NewPergunta.Correta;
             cmd.Parameters.Add("@Correta4", SqlDbType.Bit).Value = NewPergunta.Respostas[3] == NewPergunta.Correta;
+            cmd.Connection = conexao.Conectar();
+            cmd.ExecuteNonQuery();
         }
         public static void DeletePergunta(Pergunta pergunta)
         {
             cmd = new SqlCommand
             {
-                CommandText = "delete from tblEquipe where IdPergunta=@Id"
+                CommandText = "delete from tblPergunta where IdPergunta=@Id"
             };
 
             cmd.Parameters.Add("@Id", SqlDbType.Int).Value = pergunta.Id;

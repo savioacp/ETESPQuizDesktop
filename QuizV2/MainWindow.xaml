@@ -236,7 +236,7 @@
                                 <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta D" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"></TextBox>
                                 <TextBox Name="txtRespostaDissertativa" TextWrapping="Wrap" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" Style="{DynamicResource MaterialDesignTextBox}" Margin="10" materialDesign:TextFieldAssist.HasFilledTextField="True" Visibility="Hidden"/>
 
-                                <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick">
+                                <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick" Cursor="Hand">
                                     <Grid>
                                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <materialDesign:PackIcon Kind="GestureDoubleTap" Width="32" Height="32" HorizontalAlignment="Center"/>

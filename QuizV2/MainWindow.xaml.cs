@@ -32,7 +32,7 @@ namespace QuizV2
 			mnuBtnEquipes.Click += (_, __) => contentTransitioner.SelectedIndex = 1;
 			mnuBtnPerguntas.Click += (_,__) => contentTransitioner.SelectedIndex = 2;
 			mnuBtnSobre.Click += (_,__) => contentTransitioner.SelectedIndex = 3;
-		}
+        }
 
 		public void btnIniciarJogo_Click(object sender, RoutedEventArgs e)
 		{
@@ -203,6 +203,14 @@ namespace QuizV2
                 Data.DataManager.AddPergunta(pergunta);
                 dlgAddPergunta.IsOpen = false;
             }
+            txtTextoPergunta.Text = "";
+            txtRespostaA.Text = "";
+            txtRespostaB.Text = "";
+            txtRespostaC.Text = "";
+            txtRespostaD.Text = "";
+            txtRespostaDissertativa.Text = "";
+            
+
             Notificar("Pergunta adicionada com sucesso!");
             AtualizarPerguntas();
         }

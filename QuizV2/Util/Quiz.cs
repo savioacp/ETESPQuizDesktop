@@ -31,9 +31,16 @@ namespace QuizV2.Util
                 });
         }
         
-        public (Pergunta, int) NextPergunta()
+        public ValueTuple<Pergunta, int> NextPergunta()
         {
-            return (Perguntas.Dequeue(), Counter++);
+            try
+            {
+                return new ValueTuple<Pergunta, int>(Perguntas.Dequeue(), Counter++);
+            }
+            catch (InvalidOperationException)
+            { 
+                return new ValueTuple<Pergunta, int>(null, Counter);
+            }
         }
 
         public void FinalizarPergunta(Equipe[] acertaram)
@@ -55,6 +62,11 @@ namespace QuizV2.Util
                         else
                             e.Erro();
             }
+        }
+
+        public EquipeParticipando[] GetParcialRanking()
+        {
+            return Equipes.OrderBy(e => e.Pontos).ToArray();
         }
     }
 }

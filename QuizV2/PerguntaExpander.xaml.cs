@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace QuizV2
 {
@@ -60,7 +61,9 @@ namespace QuizV2
             tgbDissertativa.IsChecked = pergunta.Dissertativa;
             tgbTopQuiz.IsChecked = pergunta.TopQuiz;
 
-            img1.Source = Serializa.GetImageSourceFromImage(pergunta.Imagem);
+            tgbImagem.IsChecked = pergunta.TemImagem;
+
+            //if(pergunta.TemImagem) img1.Source = Serializa.GetImageSourceFromImage(pergunta.Imagem);
             
         }
 
@@ -137,7 +140,7 @@ namespace QuizV2
 
             Pergunta newPergunta = new Pergunta
             {
-                Imagem = Serializa.GetImageFromImageSource(img1.Source),
+                Imagem = tgbImagem.IsChecked == true ? Serializa.GetImageFromImageSource(img1.Source) : null,
                 Texto = expPergunta.Header.ToString(),
                 TopQuiz = tgbTopQuiz.IsChecked == true,
                 Correta = correta,
@@ -155,6 +158,35 @@ namespace QuizV2
         private void txtTextoPergunta_GotFocus(object sender, RoutedEventArgs e)
         {
             expPergunta.IsExpanded = true;
+        }
+
+        private void CtcImagem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (tgbImagem.IsChecked == false) tgbImagem.IsChecked = true;
+            var ofd = new OpenFileDialog()
+            {
+                Title = "Escolha uma imagem do computador.",
+                Filter = "Arquivos de imagem (*.png; *.jpg; *.bmp) | *.png; *.jpg; *.bmp"
+            };
+
+            if (ofd.ShowDialog() == true)
+            {
+                img1.Source = new BitmapImage(new Uri(ofd.FileName));
+            }
+        }
+
+        private void TgbImagem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (tgbImagem.IsChecked == true)
+            {
+                img1.IsEnabled = true;
+                img1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                img1.IsEnabled = false;
+                img1.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

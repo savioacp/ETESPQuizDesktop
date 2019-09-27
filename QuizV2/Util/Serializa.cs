@@ -42,7 +42,14 @@ namespace QuizV2
 
         public static byte[] GetImageFromImageSource(ImageSource imageSource)
         {
-            return File.ReadAllBytes((imageSource as BitmapImage).UriSource.LocalPath);            
-        }
+            try
+            {
+                return File.ReadAllBytes((imageSource as BitmapImage).UriSource.LocalPath);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+         }
     }
 }

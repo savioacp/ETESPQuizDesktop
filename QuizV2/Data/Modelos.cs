@@ -49,7 +49,8 @@ namespace QuizV2
             {
                 return Erros > Data.Cache.ErrosEliminantes;
             }
-            set {
+            set
+            {
                 if (value) Erros = Data.Cache.ErrosEliminantes;
             }
         }

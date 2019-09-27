@@ -10,7 +10,7 @@ namespace QuizV2.Data
 	public class Conexao
 	{
 
-		SqlConnection con = new SqlConnection();
+		static SqlConnection con = new SqlConnection();
 
 		public Conexao()
 		{

@@ -42,8 +42,8 @@
                 </Button>
             </Grid>
         </materialDesign:DialogHost.DialogContent>
-        <materialDesign:Transitioner SelectedIndex="0" Name="Transitioner">
-            <materialDesign:TransitionerSlide>
+        <materialDesign:Transitioner SelectedIndex="1" Name="Transitioner">
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromTop}">
                 <materialDesign:TransitionerSlide.ForwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.ForwardWipe>
@@ -74,15 +74,33 @@
                     </StackPanel>
                 </Grid>
             </materialDesign:TransitionerSlide>
-            <materialDesign:TransitionerSlide>
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
                 <materialDesign:TransitionerSlide.ForwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.ForwardWipe>
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <Grid>
-
+                <Grid  HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Ranking" TextAlignment="Center" FontSize="35" FontWeight="Light" Margin="15"/>
+                    <ListBox Grid.Row="1" Name="lbxRanking">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0">
+                                        <Image Height="24" Source="{Binding Image}" Visibility="{Binding ImageVisibility}" RenderOptions.BitmapScalingMode="Fant"/>
+                                        <TextBlock VerticalAlignment="Center" TextAlignment="Center"  Height="24" Width="24" Text="{Binding Index}" Visibility="{Binding IndexVisibility}" FontSize="20"/>
+                                        <TextBlock Text="{Binding Nome}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <Separator Background="{Binding Cor}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
