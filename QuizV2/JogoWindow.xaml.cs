@@ -90,7 +90,6 @@ namespace QuizV2
                     }
                     if (a.Item1 == null)
                     {
-                        Pódio();
                         return;
                     }
                     LoadPergunta(a.Item1, a.Item2);
@@ -119,6 +118,10 @@ namespace QuizV2
                     ItemsControlFinalizar.ItemsSource = equipesFinalizar.ToArray();
                     DialogHostFinalizar.IsOpen = true;
 
+                    if (quiz.Equipes.Count(eq => !eq.Eliminada) == 3)
+                    {
+
+                    }
                     estado = Estado.Pergunta;
                     break;
             }

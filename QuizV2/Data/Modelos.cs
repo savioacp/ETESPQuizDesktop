@@ -64,6 +64,4 @@ namespace QuizV2
         }
     }
 
-    
-
 }
