@@ -43,249 +43,269 @@
             </Grid>
         </materialDesign:DialogHost.DialogContent>
         <Grid>
-        <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource SecondaryAccentBrush}" Width="178" MinWidth="178" MaxWidth="250" HorizontalAlignment="Left">
-            <StackPanel HorizontalAlignment="Left" Width="178" MinWidth="178" MaxWidth="250"  >
-                <Image Height="107" Source="Images\logo.png" Margin="10,10,10,20" RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill" />
-                <StackPanel>
-                    <Button Name="mnuBtnJogo" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28" >
-                        <StackPanel Orientation="Horizontal" Width="160">
-                            <materialDesign:PackIcon Kind="GamepadVariant"/>
-                            <TextBlock Text="Jogo" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
+            <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource SecondaryAccentBrush}" Width="178" MinWidth="178" MaxWidth="250" HorizontalAlignment="Left">
+                <StackPanel HorizontalAlignment="Left" Width="178" MinWidth="178" MaxWidth="250"  >
+                    <Image Height="107" Source="Images\logo.png" Margin="10,10,10,20" RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill" />
+                    <StackPanel>
+                        <Button Name="mnuBtnJogo" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28" >
+                            <StackPanel Orientation="Horizontal" Width="160">
+                                <materialDesign:PackIcon Kind="GamepadVariant"/>
+                                <TextBlock Text="Jogo" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
 
-                    <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
 
-                    <Button Name="mnuBtnEquipes" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
-                        <StackPanel Orientation="Horizontal" Width="160">
-                            <materialDesign:PackIcon Kind="People"/>
-                            <TextBlock Text="Equipes" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
+                        <Button Name="mnuBtnEquipes" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
+                            <StackPanel Orientation="Horizontal" Width="160">
+                                <materialDesign:PackIcon Kind="People"/>
+                                <TextBlock Text="Equipes" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
 
-                    <Separator Style="{StaticResource MaterialDesignSeparator}"  Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}"  Background="{DynamicResource SecondaryAccentBrush}"/>
 
-                    <Button Name="mnuBtnPerguntas" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
-                        <StackPanel Orientation="Horizontal" Width="160">
-                            <materialDesign:PackIcon Kind="QuestionMark"/>
-                            <TextBlock Text="Questões" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-                    <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Button Name="mnuBtnPerguntas" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
+                            <StackPanel Orientation="Horizontal" Width="160">
+                                <materialDesign:PackIcon Kind="QuestionMark"/>
+                                <TextBlock Text="Questões" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
 
-                    <Button Name="mnuBtnSobre" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
-                        <StackPanel Orientation="Horizontal" Width="160">
-                            <materialDesign:PackIcon Kind="About"/>
-                            <TextBlock Text="Sobre" Margin="10,0,0,0"/>
-                        </StackPanel>
-                    </Button>
-                    <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Button Name="mnuBtnSobre" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
+                            <StackPanel Orientation="Horizontal" Width="160">
+                                <materialDesign:PackIcon Kind="About"/>
+                                <TextBlock Text="Sobre" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+
+                    </StackPanel>
 
                 </StackPanel>
-
-            </StackPanel>
-        </Border>
-        <materialDesign:Transitioner Name="contentTransitioner" SelectedIndex="2" Margin="183,0,0,0" Grid.ColumnSpan="2" >
-            <materialDesign:TransitionerSlide >
-                <materialDesign:TransitionerSlide.ForwardWipe>
-                    <materialDesign:FadeWipe />
-                </materialDesign:TransitionerSlide.ForwardWipe>
-                <materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:FadeWipe />
-                </materialDesign:TransitionerSlide.BackwardWipe>
-                <Grid>
-                    <WrapPanel>
-                        <materialDesign:Card>
-                                <Button Name="btnIniciarJogo" Content="Iniciar mas nem tanto" Click="btnIniciarJogo_Click"/>
-                        </materialDesign:Card>
-
-                        <Grid Height="128" Width="128">
-                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" Value="40" Width="Auto" Height="Auto" />
-                            <TextBlock Text="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        </Grid>
-
-                    </WrapPanel>
-                </Grid>
-            </materialDesign:TransitionerSlide>
-
-            <materialDesign:TransitionerSlide>
-                <materialDesign:TransitionerSlide.ForwardWipe>
-                    <materialDesign:FadeWipe />
-                </materialDesign:TransitionerSlide.ForwardWipe>
-                <materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:FadeWipe />
-                </materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:DialogHost Name="dlgAddEquipe" IsOpen="False" CloseOnClickAway="True">
-                    <materialDesign:DialogHost.DialogContent>
-                        <materialDesign:Card Width="250">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Adicionar Equipe" Grid.Row="0" Grid.ColumnSpan="2" Margin="15,15,15,10" FontSize="16"/>
-
-                                <TextBox x:Name="txtAddEquipeNome" Grid.Row="1" materialDesign:HintAssist.Hint="Nome da equipe" Grid.ColumnSpan="2" Margin="15,0,15,15" FontSize="15" materialDesign:HintAssist.IsFloating="True"/>
-
-                                <TextBox Name="txtAddEquipeIntegrante1" Grid.Row="2" materialDesign:HintAssist.Hint="Integrante 1" Grid.ColumnSpan="2" Margin="15,0,15,15" />
-
-                                <TextBox Name="txtAddEquipeIntegrante2" Grid.Row="3" materialDesign:HintAssist.Hint="Integrante 2" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
-
-                                <TextBox Name="txtAddEquipeIntegrante3" Grid.Row="4" materialDesign:HintAssist.Hint="Integrante 3" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
-
-                                <TextBox Name="txtAddEquipeIntegrante4" Grid.Row="5" materialDesign:HintAssist.Hint="Integrante 4" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
-
-                                <TextBox Name="txtAddEquipeIntegrante5" Grid.Row="6" materialDesign:HintAssist.Hint="Integrante 5" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
-
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="7" Click="btnVoltarAdicionarEquipe_Click" Foreground="#FF999999">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="ArrowBack"/>
-                                        <TextBlock Margin="3,0,0,0" Text="Voltar"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button Padding="5" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5,0,5,5" Grid.Column="1" Grid.Row="7" Click="btnConfirmarAdicionar_Click">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Add" />
-                                        <TextBlock Text="Adicionar" Margin="3,0,0,0"/>
-                                    </StackPanel>
-                                </Button>
-
-                            </Grid>
-                        </materialDesign:Card>
-                    </materialDesign:DialogHost.DialogContent>
+            </Border>
+            <materialDesign:Transitioner Name="contentTransitioner" SelectedIndex="0" Margin="183,0,0,0" Grid.ColumnSpan="2" >
+                <materialDesign:TransitionerSlide >
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:FadeWipe />
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:FadeWipe />
+                    </materialDesign:TransitionerSlide.BackwardWipe>
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="125"/>
-                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="60"/>
-                            <RowDefinition Height="506*"/>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock FontSize="36" Margin="15,0,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
-                        <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
-                            <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
-                        </Button>
-                        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" >
-                            <WrapPanel Name="wrpEquipes">
+                        <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Jogo</TextBlock>
+                        
+                        <ComboBox Grid.Row="2" materialDesign:HintAssist.Hint="Quantidade de erros permitidos" MinWidth="72" HorizontalAlignment="Left" Margin="16" SelectedIndex="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                            <ComboBox.Items>
+                                <ComboBoxItem>1</ComboBoxItem>
+                                <ComboBoxItem>2</ComboBoxItem>
+                                <ComboBoxItem>3</ComboBoxItem>
+                                <ComboBoxItem>4</ComboBoxItem>
+                                <ComboBoxItem>5</ComboBoxItem>
+                                <ComboBoxItem>6</ComboBoxItem>
+                                <ComboBoxItem>7</ComboBoxItem>
+                                <ComboBoxItem>8</ComboBoxItem>
+                                <ComboBoxItem>9</ComboBoxItem>
+                                <ComboBoxItem>10</ComboBoxItem>
+                                <ComboBoxItem>11</ComboBoxItem>
+                                <ComboBoxItem>12</ComboBoxItem>
+                                <ComboBoxItem>13</ComboBoxItem>
+                                <ComboBoxItem>14</ComboBoxItem>
+                                <ComboBoxItem>15</ComboBoxItem>
+                            </ComboBox.Items>
+                        </ComboBox>
 
-                            </WrapPanel>
-                        </ScrollViewer>
+
+
+                        <Button Grid.Row="3" Name="btnIniciarJogo" Content="Iniciar jogo" Click="btnIniciarJogo_Click" Margin="15"/>
                     </Grid>
-                </materialDesign:DialogHost>
-            </materialDesign:TransitionerSlide>
+                </materialDesign:TransitionerSlide>
 
-            <materialDesign:TransitionerSlide>
-                <materialDesign:TransitionerSlide.ForwardWipe>
-                    <materialDesign:FadeWipe />
-                </materialDesign:TransitionerSlide.ForwardWipe>
-                <materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:FadeWipe />
-                </materialDesign:TransitionerSlide.BackwardWipe>
-                    <materialDesign:DialogHost Name="dlgAddPergunta" IsOpen="False" CloseOnClickAway="True">
-                    <materialDesign:DialogHost.DialogContent>
-                        <materialDesign:Card Width="700">
-                            <Grid Margin="15">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="46"/>
-                                    <ColumnDefinition Width="304"/>
-                                    <ColumnDefinition Width="23"/>
-                                    <ColumnDefinition Width="327"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="Nova Pergunta" Grid.ColumnSpan="4" FontSize="20" Margin="8" />
-                                <TextBox Name="txtTextoPergunta" Grid.ColumnSpan="4" Grid.Row="1" FontSize="18" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Texto da Pergunta" Margin="8"></TextBox>
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:FadeWipe />
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:FadeWipe />
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:DialogHost Name="dlgAddEquipe" IsOpen="False" CloseOnClickAway="True">
+                        <materialDesign:DialogHost.DialogContent>
+                            <materialDesign:Card Width="250">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Adicionar Equipe" Grid.Row="0" Grid.ColumnSpan="2" Margin="15,15,15,10" FontSize="16"/>
 
-                                <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="2" Margin="8,0,0,0" Click="tgbDissertativa_Click"></ToggleButton>
-                                <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0,5" Grid.ColumnSpan="2">Dissertativa</TextBlock>
+                                    <TextBox x:Name="txtAddEquipeNome" Grid.Row="1" materialDesign:HintAssist.Hint="Nome da equipe" Grid.ColumnSpan="2" Margin="15,0,15,15" FontSize="15" materialDesign:HintAssist.IsFloating="True"/>
 
-                                <ToggleButton Name="tgbTopQuiz" Grid.Column="0" Grid.Row="3" Margin="8,0,0,0" ></ToggleButton>
-                                <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Margin="0,5" Grid.ColumnSpan="2">TopQuiz</TextBlock>
+                                    <TextBox Name="txtAddEquipeIntegrante1" Grid.Row="2" materialDesign:HintAssist.Hint="Integrante 1" Grid.ColumnSpan="2" Margin="15,0,15,15" />
 
-                                <RadioButton Name="rdbRespostaA" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="4"/>
-                                <TextBox Name="txtRespostaA" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta A" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
+                                    <TextBox Name="txtAddEquipeIntegrante2" Grid.Row="3" materialDesign:HintAssist.Hint="Integrante 2" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
 
-                                <RadioButton Name="rdbRespostaB" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="5"/>
-                                <TextBox Name="txtRespostaB" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta B" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
+                                    <TextBox Name="txtAddEquipeIntegrante3" Grid.Row="4" materialDesign:HintAssist.Hint="Integrante 3" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
 
-                                <RadioButton Name="rdbRespostaC" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="6"/>
-                                <TextBox Name="txtRespostaC" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta C" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"></TextBox>
+                                    <TextBox Name="txtAddEquipeIntegrante4" Grid.Row="5" materialDesign:HintAssist.Hint="Integrante 4" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
 
-                                <RadioButton Name="rdbRespostaD" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="7"/>
-                                <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta D" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"></TextBox>
-                                <TextBox Name="txtRespostaDissertativa" TextWrapping="Wrap" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" Style="{DynamicResource MaterialDesignTextBox}" Margin="10" materialDesign:TextFieldAssist.HasFilledTextField="True" Visibility="Hidden"/>
+                                    <TextBox Name="txtAddEquipeIntegrante5" Grid.Row="6" materialDesign:HintAssist.Hint="Integrante 5" Grid.ColumnSpan="2" Margin="15,0,15,15"/>
 
-                                <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick" Cursor="Hand">
-                                    <Grid>
-                                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <materialDesign:PackIcon Kind="GestureDoubleTap" Width="32" Height="32" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="Duplo clique para editar a imagem" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="7" Click="btnVoltarAdicionarEquipe_Click" Foreground="#FF999999">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ArrowBack"/>
+                                            <TextBlock Margin="3,0,0,0" Text="Voltar"/>
                                         </StackPanel>
-                                        <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform"/>
-                                    </Grid>
-                                </ContentControl>
-                                <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="8" Click="btnVoltarAdicionarPergunta_Click" Foreground="#FF999999" Grid.ColumnSpan="2">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="ArrowBack"/>
-                                    <TextBlock Margin="3,0,0,0" Text="Voltar"/>
-                                </StackPanel>
-                                </Button>
-                                <Button Padding="5" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5,0,5,5" Grid.Column="2" Grid.Row="8" Click="btnConfirmarAdicionarPergunta_Click" Grid.ColumnSpan="2">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Add" />
-                                        <TextBlock Text="Adicionar" Margin="3,0,0,0"/>
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
-                        </materialDesign:Card>
-                    </materialDesign:DialogHost.DialogContent>
+                                    </Button>
+                                    <Button Padding="5" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5,0,5,5" Grid.Column="1" Grid.Row="7" Click="btnConfirmarAdicionar_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Add" />
+                                            <TextBlock Text="Adicionar" Margin="3,0,0,0"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                </Grid>
+                            </materialDesign:Card>
+                        </materialDesign:DialogHost.DialogContent>
                         <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="125"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock FontSize="36" Grid.Column="0"  Margin="15,8,0,0">Questões</TextBlock>
-                        <Button  Name="btnAdicionarPergunta" Click="BtnAdicionarPergunta_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
-                            <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
-                        </Button>
-                        <ScrollViewer Grid.ColumnSpan="2" Grid.Row="1">
-                            <StackPanel Name="stpPerguntas">
-                            
-                            </StackPanel>
-                        </ScrollViewer>
-                    
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="125"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="506*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
+                            <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
+                                <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
+                            </Button>
+                            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" >
+                                <WrapPanel Name="wrpEquipes">
 
-                    </Grid>
-                </materialDesign:DialogHost>
-            </materialDesign:TransitionerSlide>
-        </materialDesign:Transitioner>
-        <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" Name="snackbarNotifications" />
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </materialDesign:DialogHost>
+                </materialDesign:TransitionerSlide>
 
-    </Grid>
+                <materialDesign:TransitionerSlide>
+                    <materialDesign:TransitionerSlide.ForwardWipe>
+                        <materialDesign:FadeWipe />
+                    </materialDesign:TransitionerSlide.ForwardWipe>
+                    <materialDesign:TransitionerSlide.BackwardWipe>
+                        <materialDesign:FadeWipe />
+                    </materialDesign:TransitionerSlide.BackwardWipe>
+                    <materialDesign:DialogHost Name="dlgAddPergunta" IsOpen="False" CloseOnClickAway="True">
+                        <materialDesign:DialogHost.DialogContent>
+                            <materialDesign:Card Width="700">
+                                <Grid Margin="15">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="46"/>
+                                        <ColumnDefinition Width="304"/>
+                                        <ColumnDefinition Width="23"/>
+                                        <ColumnDefinition Width="327"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Nova Pergunta" Grid.ColumnSpan="4" FontSize="20" Margin="8" />
+                                    <TextBox Name="txtTextoPergunta" Grid.ColumnSpan="4" Grid.Row="1" FontSize="18" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Texto da Pergunta" Margin="8"></TextBox>
+
+                                    <ToggleButton Name="tgbDissertativa" Grid.Column="0" Grid.Row="2" Margin="8,0,0,0" Click="tgbDissertativa_Click"></ToggleButton>
+                                    <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0,5" Grid.ColumnSpan="2">Dissertativa</TextBlock>
+
+                                    <ToggleButton Name="tgbTopQuiz" Grid.Column="0" Grid.Row="3" Margin="8,0,0,0" ></ToggleButton>
+                                    <TextBlock FontSize="16" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Margin="0,5" Grid.ColumnSpan="2">TopQuiz</TextBlock>
+
+                                    <RadioButton Name="rdbRespostaA" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="4"/>
+                                    <TextBox Name="txtRespostaA" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta A" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"/>
+
+                                    <RadioButton Name="rdbRespostaB" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="5"/>
+                                    <TextBox Name="txtRespostaB" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta B" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"/>
+
+                                    <RadioButton Name="rdbRespostaC" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="6"/>
+                                    <TextBox Name="txtRespostaC" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta C" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"/>
+
+                                    <RadioButton Name="rdbRespostaD" GroupName="grpAddPergunta" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="0,10,0,0" VerticalAlignment="Center" Content="{materialDesign:PackIcon Kind=Cancel}" Grid.Column="0" Grid.Row="7"/>
+                                    <TextBox Name="txtRespostaD" FontSize="18" VerticalAlignment="Center" Margin="0,11,0,10" materialDesign:HintAssist.IsFloating="True" materialDesign:HintAssist.Hint="Resposta D" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2"/>
+                                    <TextBox Name="txtRespostaDissertativa" materialDesign:HintAssist.Hint="Resposta dissertativa" TextWrapping="Wrap" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" Style="{DynamicResource MaterialDesignTextBox}" Margin="10" materialDesign:TextFieldAssist.HasFilledTextField="True" Visibility="Hidden"/>
+
+                                    <ContentControl Name="ctcImagem" Grid.Column="3" Grid.Row="2" Grid.RowSpan="7" Margin="15" Grid.ColumnSpan="2" MouseDoubleClick="CtcImagem_MouseDoubleClick" Cursor="Hand">
+                                        <Grid>
+                                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <materialDesign:PackIcon Kind="GestureDoubleTap" Width="32" Height="32" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="Duplo clique para editar a imagem" FontSize="20" TextWrapping="Wrap" TextAlignment="Center"/>
+                                            </StackPanel>
+                                            <Image ToolTip="Duplo clique para trocar a imagem" Name="img1" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform"/>
+                                        </Grid>
+                                    </ContentControl>
+                                    <Button Style="{StaticResource MaterialDesignFlatButton}" Margin="5,0,5,5" Grid.Column="0" Grid.Row="8" Click="btnVoltarAdicionarPergunta_Click" Foreground="#FF999999" Grid.ColumnSpan="2">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="ArrowBack"/>
+                                            <TextBlock Margin="3,0,0,0" Text="Voltar"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Padding="5" Style="{StaticResource MaterialDesignFlatAccentButton}" Margin="5,0,5,5" Grid.Column="2" Grid.Row="8" Click="btnConfirmarAdicionarPergunta_Click" Grid.ColumnSpan="2">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Add" />
+                                            <TextBlock Text="Adicionar" Margin="3,0,0,0"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </materialDesign:Card>
+                        </materialDesign:DialogHost.DialogContent>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="125"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="36" Grid.Column="0"  Margin="15,8,0,0">Questões</TextBlock>
+                            <Button  Name="btnAdicionarPergunta" Click="BtnAdicionarPergunta_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
+                                <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
+                            </Button>
+                            <ScrollViewer Grid.ColumnSpan="2" Grid.Row="1">
+                                <StackPanel Name="stpPerguntas">
+
+                                </StackPanel>
+                            </ScrollViewer>
+
+
+                        </Grid>
+                    </materialDesign:DialogHost>
+                </materialDesign:TransitionerSlide>
+            </materialDesign:Transitioner>
+            <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" Name="snackbarNotifications" />
+
+        </Grid>
     </materialDesign:DialogHost>
 </Window>

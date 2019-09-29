@@ -56,7 +56,7 @@ namespace QuizV2
         }
         public void Acerto(bool sozinha)
         {
-            Erros = sozinha ? Erros + 1 : Erros + 2;
+            Pontos = sozinha ?  Pontos + 2 : Pontos + 1;
         }
 
         public void Erro()

@@ -50,29 +50,102 @@
                 <materialDesign:TransitionerSlide.BackwardWipe>
                     <materialDesign:FadeWipe />
                 </materialDesign:TransitionerSlide.BackwardWipe>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="22*" />
-                        <ColumnDefinition Width="31*" />
-                    </Grid.ColumnDefinitions>
+                <materialDesign:DrawerHost Name="DrawerHost">
+                    <materialDesign:DrawerHost.RightDrawerContent>
+                        <ListBox Grid.Row="1" Name="lbxRanking" Margin="10,0,10,0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:TransitioningContent OpeningEffectsOffset="{materialDesign:IndexedItemOffsetMultiplier 0:0:0.05}">
+                                        <materialDesign:TransitioningContent.OpeningEffects>
+                                            <materialDesign:TransitionEffect Kind="SlideInFromRight"/>
+                                            <materialDesign:TransitionEffect Kind="FadeIn"/>
+                                        </materialDesign:TransitioningContent.OpeningEffects>
+                                            <StackPanel>
+                                            <Grid Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="30"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="36"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Grid.Column="0" Height="24" Source="{Binding Image}" Visibility="{Binding ImageVisibility}" RenderOptions.BitmapScalingMode="Fant"/>
+                                                <TextBlock Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Text="{Binding Index}" Visibility="{Binding IndexVisibility}" FontSize="18" HorizontalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding Nome}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+                                                <TextBlock Grid.Column="2" Text="{Binding Pontos}" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                            <Separator Background="{Binding Cor}"/>
+                                        </StackPanel>
+                                    </materialDesign:TransitioningContent>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </materialDesign:DrawerHost.RightDrawerContent>
+                    <materialDesign:DialogHost Name="DialogHostFinalizar" IsOpen="False">
+                        <materialDesign:DialogHost.DialogContent>
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition />
+                                    <RowDefinition Height="500"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                    
+                                <TextBlock Text="Computar acertos" Grid.ColumnSpan="4" Margin="10,10,10,0" FontSize="23"/>
+                                <TextBlock Text="Marque as equipes que acertaram a questão." Grid.Row="1" TextWrapping="Wrap" Margin="10,0,10,10" HorizontalAlignment="Left" MaxWidth="150"/>
+                                <ScrollViewer Grid.Row="2" MaxHeight="500" Margin="10" materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed" Style="{DynamicResource MaterialDesignScrollViewer}">
+                                    <ItemsControl Name="ItemsControlFinalizar">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="10" >
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="30"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="36"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <CheckBox IsChecked="{Binding IsRight, Mode=TwoWay}" Click="ButtonBase_OnClick"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Nome}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0"/>
+                                                        <TextBlock Grid.Column="2" Text="{Binding Pontos}" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Center"/>
+                                                    </Grid>
+                                                    <Separator Background="{Binding Cor}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </ScrollViewer>
+                                <Button Grid.Row="3" Grid.Column="0" Margin="10" Name="ButtonConfirmarFinalizar" Click="ButtonConfirmarFinalizar_OnClick">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="ArrowRight"/>
+                                        <TextBlock Text="Prosseguir" Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </Button>
+                            </Grid>
+                        </materialDesign:DialogHost.DialogContent>
+                            <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="22*" />
+                                <ColumnDefinition Width="31*" />
+                            </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Center" TextWrapping="Wrap" Height="108" FontSize="28" Margin="30,61" VerticalAlignment="Center" Grid.ColumnSpan="2">
-                        Teste de pergunta bem grande que da pra ver se funcionando a quebra de linha quebra de linha quebra de linha quebra de linha quebra de linhaquebra de linha
-                    </TextBlock>
+                            <TextBlock x:Name="label" Grid.Column="0" TextAlignment="Center" TextWrapping="Wrap" Height="108" FontSize="28" Margin="30,61" VerticalAlignment="Center" Grid.ColumnSpan="2">
+                                Teste de pergunta bem grande que da pra ver se funcionando a quebra de linha quebra de linha quebra de linha quebra de linha quebra de linhaquebra de linha
+                            </TextBlock>
 
-                    <Image Name="img" Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Row="1" Margin="20,20,20,0" VerticalAlignment="Top" Height="344"/>
-                    <StackPanel Name="aaaaaa" Grid.Column="1" Margin="20" Grid.Row="1">
-                        <TextBlock Name="txtRespostaA" FontSize="18" Margin="5" TextWrapping="Wrap">A) Resposta A</TextBlock>
-                        <TextBlock Name="txtRespostaB" FontSize="18" Margin="5" TextWrapping="Wrap">B) Resposta B</TextBlock>
-                        <TextBlock Name="txtRespostaC" FontSize="18" Margin="5" TextWrapping="Wrap">C) Resposta C</TextBlock>
-                        <TextBlock Name="txtRespostaD" FontSize="18" Margin="5" TextWrapping="Wrap">D) Resposta D</TextBlock>
-                    </StackPanel>
-                </Grid>
+                            <Image Name="img" Source="exemplo-de-grafico-de-linhas.jpg" RenderOptions.BitmapScalingMode="Fant" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Row="1" Margin="20,20,20,0" VerticalAlignment="Top" Height="344"/>
+                            <StackPanel Name="stpRespostas" Grid.Column="1" Margin="20" Grid.Row="1">
+                                <TextBlock Name="txtRespostaA" FontSize="18" Margin="5" TextWrapping="Wrap">A) Resposta A</TextBlock>
+                                <TextBlock Name="txtRespostaB" FontSize="18" Margin="5" TextWrapping="Wrap">B) Resposta B</TextBlock>
+                                <TextBlock Name="txtRespostaC" FontSize="18" Margin="5" TextWrapping="Wrap">C) Resposta C</TextBlock>
+                                <TextBlock Name="txtRespostaD" FontSize="18" Margin="5" TextWrapping="Wrap">D) Resposta D</TextBlock>
+                            </StackPanel>
+                            <local:TimerControl Grid.Row="2" Grid.Column="1" Height="160" VerticalAlignment="Top" x:Name="TimerControl"/>
+                        </Grid>
+                    </materialDesign:DialogHost>
+                </materialDesign:DrawerHost>
             </materialDesign:TransitionerSlide>
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
                 <materialDesign:TransitionerSlide.ForwardWipe>
@@ -86,21 +159,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Ranking" TextAlignment="Center" FontSize="35" FontWeight="Light" Margin="15"/>
-                    <ListBox Grid.Row="1" Name="lbxRanking">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Margin="0">
-                                        <Image Height="24" Source="{Binding Image}" Visibility="{Binding ImageVisibility}" RenderOptions.BitmapScalingMode="Fant"/>
-                                        <TextBlock VerticalAlignment="Center" TextAlignment="Center"  Height="24" Width="24" Text="{Binding Index}" Visibility="{Binding IndexVisibility}" FontSize="20"/>
-                                        <TextBlock Text="{Binding Nome}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                    <Separator Background="{Binding Cor}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    
                 </Grid>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>

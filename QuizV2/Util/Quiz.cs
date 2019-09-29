@@ -11,8 +11,9 @@ namespace QuizV2.Util
 {
     public class Quiz
     {
-        public Queue<Pergunta> Perguntas { get; private set; }
-        public List<EquipeParticipando> Equipes { get; private set; }
+        public Pergunta Pergunta { get; private set; }
+        public Queue<Pergunta> Perguntas { get; }
+        public List<EquipeParticipando> Equipes { get; }
         public int Counter { get; private set; } = 1;
         
         public Quiz(Pergunta[] perguntas, Equipe[] equipes)
@@ -35,7 +36,7 @@ namespace QuizV2.Util
         {
             try
             {
-                return new ValueTuple<Pergunta, int>(Perguntas.Dequeue(), Counter++);
+                return (Pergunta, _) = new ValueTuple<Pergunta, int>(Perguntas.Dequeue(), Counter++);
             }
             catch (InvalidOperationException)
             { 
@@ -43,7 +44,7 @@ namespace QuizV2.Util
             }
         }
 
-        public void FinalizarPergunta(Equipe[] acertaram)
+        public void FinalizarPergunta(EquipeParticipando[] acertaram)
         {
             if (acertaram.Length == 1)
             {
@@ -56,7 +57,7 @@ namespace QuizV2.Util
             else
             {
                 foreach(EquipeParticipando e in Equipes)
-                    foreach (Equipe eq in acertaram)
+                    foreach (EquipeParticipando eq in acertaram)
                         if (eq.Id == e.Id)
                             e.Acerto(false);
                         else
@@ -66,7 +67,7 @@ namespace QuizV2.Util
 
         public EquipeParticipando[] GetParcialRanking()
         {
-            return Equipes.OrderBy(e => e.Pontos).ToArray();
+            return Equipes.OrderByDescending(e => e.Pontos).ToArray();
         }
     }
 }
