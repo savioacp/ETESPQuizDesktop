@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Grupo F - Quiz" Width="1142.649" Height="597" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="Grupo F - Quiz" Width="1280" Height="720" Loaded="Window_Loaded" Closing="Window_Closing">
     <materialDesign:DialogHost Name="dlgConfirmarFechar" IsOpen="False" CloseOnClickAway="True">
         <materialDesign:DialogHost.DialogContent>
             <Grid Margin="10">
@@ -45,7 +45,7 @@
         <Grid>
             <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource SecondaryAccentBrush}" Width="178" MinWidth="178" MaxWidth="250" HorizontalAlignment="Left">
                 <StackPanel HorizontalAlignment="Left" Width="178" MinWidth="178" MaxWidth="250"  >
-                    <Image Height="107" Source="Images\logo.png" Margin="10,10,10,20" RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill" />
+                    <Image Height="107" Source="Images\logo.png" Margin="10,10,10,20" RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill"/>
                     <StackPanel>
                         <Button Name="mnuBtnJogo" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28" >
                             <StackPanel Orientation="Horizontal" Width="160">
