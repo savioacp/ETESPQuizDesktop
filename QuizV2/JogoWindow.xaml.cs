@@ -85,7 +85,7 @@ namespace QuizV2
                     {
                         textBlock.Background = stpRespostas.Background;
                     }
-                    if (a.Item1 is null)
+                    if (a.Item1 == null)
                     {
                         Pódio();
                         return;

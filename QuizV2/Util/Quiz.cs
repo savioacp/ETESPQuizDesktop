@@ -36,7 +36,9 @@ namespace QuizV2.Util
         {
             try
             {
-                return (Pergunta, _) = new ValueTuple<Pergunta, int>(Perguntas.Dequeue(), Counter++);
+                var a = new ValueTuple<Pergunta, int>(Perguntas.Dequeue(), Counter++);
+                Pergunta = a.Item1;
+                return a;
             }
             catch (InvalidOperationException)
             { 
