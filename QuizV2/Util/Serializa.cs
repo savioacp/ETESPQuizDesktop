@@ -46,10 +46,10 @@ namespace QuizV2
             {
                 return File.ReadAllBytes((imageSource as BitmapImage).UriSource.LocalPath);
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return null;
             }
-         }
+        }
     }
 }

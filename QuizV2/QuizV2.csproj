@@ -90,12 +90,6 @@
     <Compile Include="PerguntaExpander.xaml.cs">
       <DependentUpon>PerguntaExpander.xaml</DependentUpon>
     </Compile>
-    <Compile Include="QuestionControl.xaml.cs">
-      <DependentUpon>QuestionControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RankingItems.xaml.cs">
-      <DependentUpon>RankingItems.xaml</DependentUpon>
-    </Compile>
     <Compile Include="SequentialConverter.cs" />
     <Compile Include="TimerControl.xaml.cs">
       <DependentUpon>TimerControl.xaml</DependentUpon>
@@ -114,14 +108,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PerguntaExpander.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="QuestionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RankingItems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +152,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -200,6 +187,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\medalhaTerceiro.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Media\timer-sound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\x.png" />

@@ -35,7 +35,8 @@ namespace QuizV2
         }
 
 		public void btnIniciarJogo_Click(object sender, RoutedEventArgs e)
-		{
+        {
+            Data.Cache.ErrosEliminantes = ComboBoxErrosEliminantes.SelectedIndex + 1;
             (new JogoWindow()).Show();
 		}
 
@@ -188,8 +189,6 @@ namespace QuizV2
                 if (rdbRespostaD.IsChecked ?? false) correta = txtRespostaD.Text;
 
                 var vazia = BitmapSource.Create(2, 2, 96, 96, PixelFormats.Indexed1, new BitmapPalette(new List<System.Windows.Media.Color> { Colors.Transparent }), new byte[] { 0, 0, 0, 0 }, 1);
-                var bmpVazio = new Bitmap(Properties.Resources.transparente as System.Drawing.Image);
-
 
                 Pergunta pergunta = new Pergunta
                 {

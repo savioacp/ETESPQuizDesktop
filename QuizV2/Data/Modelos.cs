@@ -43,25 +43,24 @@ namespace QuizV2
     {
         public int Erros;
         public int Pontos;
-        public bool Eliminada
-        {
-            get
-            {
-                return Erros > Data.Cache.ErrosEliminantes;
-            }
-            set
-            {
-                if (value) Erros = Data.Cache.ErrosEliminantes;
-            }
-        }
+        public bool Eliminada => Erros >= Data.Cache.ErrosEliminantes;
+
         public void Acerto(bool sozinha)
         {
-            Pontos = sozinha ?  Pontos + 2 : Pontos + 1;
+            if (sozinha)
+                Pontos += 2;
+            else
+                Pontos++;
         }
 
         public void Erro()
         {
             Erros++;
+        }
+
+        public void Repescou()
+        {
+            Erros = 0;
         }
     }
 

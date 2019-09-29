@@ -101,9 +101,9 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Jogo</TextBlock>
-                        
-                        <ComboBox Grid.Row="2" materialDesign:HintAssist.Hint="Quantidade de erros permitidos" MinWidth="72" HorizontalAlignment="Left" Margin="16" SelectedIndex="4" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ComboBox Name="ComboBoxErrosEliminantes" materialDesign:ComboBoxAssist.ShowSelectedItem="True" Grid.Row="2" materialDesign:HintAssist.Hint="Quantidade de erros permitidos" MinWidth="72" HorizontalAlignment="Left" Margin="16" SelectedIndex="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBox.Items>
+                                <ComboBoxItem>0</ComboBoxItem>
                                 <ComboBoxItem>1</ComboBoxItem>
                                 <ComboBoxItem>2</ComboBoxItem>
                                 <ComboBoxItem>3</ComboBoxItem>

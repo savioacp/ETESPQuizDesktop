@@ -23,10 +23,8 @@ namespace QuizV2
     /// </summary>
     public partial class JogoWindow : Window
     {
-        enum Estado
-        {
-            Pergunta, Resposta, Resultado
-        }
+        MediaPlayer mediaPlayer;
+        bool TopQuiz;
         List<ListViewItemWithLittleImage> equipesOrdenadas;
         List<EquipeItemFinalizar> equipesFinalizar;
         Quiz quiz;
@@ -36,7 +34,8 @@ namespace QuizV2
             InitializeComponent();
             equipesOrdenadas = new List<ListViewItemWithLittleImage>();
             equipesFinalizar = new List<EquipeItemFinalizar>();
-            quiz = new Quiz(Data.Cache.Perguntas, Data.Cache.Equipes);
+            quiz = new Quiz();
+            TopQuiz = false;
 
             var cmdSair = new RoutedCommand {InputGestures = { new KeyGesture(Key.Escape) }};
             var cmdConfirmarSair = new RoutedCommand {InputGestures = { new KeyGesture(Key.Enter) }};
@@ -59,6 +58,10 @@ namespace QuizV2
 
             estado = Estado.Pergunta;
             img.Visibility = Visibility.Collapsed;
+
+
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.Open(new Uri($"{Environment.CurrentDirectory}\\Media\\timer-sound.mp3", UriKind.Absolute));
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -83,7 +86,7 @@ namespace QuizV2
                     ValueTuple<Pergunta, int> a = quiz.NextPergunta();
                     foreach (var textBlock in stpRespostas.Children.OfType<TextBlock>())
                     {
-                        textBlock.Background = stpRespostas.Background;
+                        textBlock.Foreground = Brushes.Black;
                     }
                     if (a.Item1 == null)
                     {
@@ -92,14 +95,18 @@ namespace QuizV2
                     }
                     LoadPergunta(a.Item1, a.Item2);
                     TimerControl.StartTimer();
+                    mediaPlayer.Play();
                     estado = Estado.Resposta;
                     
                     break;
                 case Estado.Resposta:
-                    (stpRespostas.Children.OfType<TextBlock>().Where(txt => Regex.IsMatch(txt.Text, $"[ABCD]\\) {quiz.Pergunta.Correta}"))).First().Background = Brushes.GreenYellow;
+                    (stpRespostas.Children.OfType<TextBlock>().Where(txt => Regex.IsMatch(txt.Text, $"[ABCD]\\) {quiz.Pergunta.Correta}"))).First().Foreground = Brushes.Green;
                     estado = Estado.Resultado;
+                    mediaPlayer.Stop();
+                    mediaPlayer.Position = TimeSpan.Zero;
                     break;
                 case Estado.Resultado:
+                    equipesFinalizar.Clear();
                     foreach (EquipeParticipando eq in quiz.Equipes)
                     {
                         equipesFinalizar.Add(new EquipeItemFinalizar
@@ -109,7 +116,7 @@ namespace QuizV2
                         });
                     }
 
-                    ItemsControlFinalizar.ItemsSource = equipesFinalizar;
+                    ItemsControlFinalizar.ItemsSource = equipesFinalizar.ToArray();
                     DialogHostFinalizar.IsOpen = true;
 
                     estado = Estado.Pergunta;
@@ -187,6 +194,32 @@ namespace QuizV2
             }
         }
 
+        
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            //Dispatcher.InvokeAsync(() => MessageBox.Show($"{string.Join(", ", equipesFinalizar.Where(eq => eq.IsRight).Select(eq => eq.Nome))}"));
+        }
+
+        private void ButtonConfirmarFinalizar_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            if(ToggleButtonRepescagem.IsChecked == true)
+                quiz.Recuperação(equipesFinalizar.Where(eq => eq.IsRight).Select(eq => eq.Equipe).ToArray());
+            else
+                quiz.FinalizarPergunta(equipesFinalizar.Where(eq => eq.IsRight).Select(eq => eq.Equipe).ToArray());
+
+            DialogHostFinalizar.IsOpen = false;
+
+            ToggleButtonRepescagem.IsChecked = false;
+        }
+
+        private void ToggleButtonRepescagem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ;
+        }
+
+
+
         class ListViewItemWithLittleImage
         {
             public EquipeParticipando Equipe { get; set; }
@@ -195,7 +228,7 @@ namespace QuizV2
             public string Nome => Equipe.Nome;
             public string Cor => Equipe.Cor;
             public string Pontos => $"{Equipe.Pontos}pts";
-            public string Background => Equipe.Eliminada ? "#FFFFFFFF" : "CrimsonRed";
+            public string Foreground => Equipe.Eliminada ? "#ff1744" : "#000000";
 
 
             public Visibility ImageVisibility => Image == null ? Visibility.Collapsed : Visibility.Visible;
@@ -209,20 +242,13 @@ namespace QuizV2
             public string Nome => Equipe.Nome;
             public string Cor => Equipe.Cor;
             public string Pontos => $"{Equipe.Pontos}pts";
-            public string Background => Equipe.Eliminada ? "#FFFFFFFF" : "CrimsonRed";
+            public string Foreground => Equipe.Eliminada ? "#ff1744" : "#000000";
 
         }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        enum Estado
         {
-            //Dispatcher.InvokeAsync(() => MessageBox.Show($"{string.Join(", ", equipesFinalizar.Where(eq => eq.IsRight).Select(eq => eq.Nome))}"));
+            Pergunta, Resposta, Resultado
         }
 
-        private void ButtonConfirmarFinalizar_OnClick(object sender, RoutedEventArgs e)
-        {
-            quiz.FinalizarPergunta(equipesFinalizar.Where(eq => eq.IsRight).Select(eq => eq.Equipe).ToArray());
-            Dispatcher.InvokeAsync(() => MessageBox.Show($"{string.Join(", ", quiz.Equipes.Where(eq => eq.Pontos > 0).Select(eq => $"{eq.Pontos}: {eq.Nome}"))}"));
-            DialogHostFinalizar.IsOpen = false;
-        }
     }
 }

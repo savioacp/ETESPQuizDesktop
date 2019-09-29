@@ -12,15 +12,17 @@ namespace QuizV2.Util
     public class Quiz
     {
         public Pergunta Pergunta { get; private set; }
-        public Queue<Pergunta> Perguntas { get; }
-        public List<EquipeParticipando> Equipes { get; }
+        public Queue<Pergunta> Perguntas { get; private set; }
+        public List<EquipeParticipando> Equipes { get; private set; }
         public int Counter { get; private set; } = 1;
+        private bool _TopQuiz { get; set; }
         
-        public Quiz(Pergunta[] perguntas, Equipe[] equipes)
+
+        public Quiz()
         {
-            Perguntas = new Queue<Pergunta>(perguntas.Randomize());
+            Perguntas = new Queue<Pergunta>(Data.Cache.Perguntas.Where(eq => !eq.TopQuiz).ToArray().Randomize());
             Equipes = new List<EquipeParticipando>();
-            foreach (Equipe eq in equipes)
+            foreach (Equipe eq in Data.Cache.Equipes)
                 Equipes.Add(new EquipeParticipando
                 {
                     Id = eq.Id,
@@ -28,7 +30,7 @@ namespace QuizV2.Util
                     Cor = eq.Cor,
                     Integrantes = eq.Integrantes,
                     Pontos = 0,
-                    Erros = 0                    
+                    Erros = 0
                 });
         }
         
@@ -59,12 +61,26 @@ namespace QuizV2.Util
             else
             {
                 foreach(EquipeParticipando e in Equipes)
-                    foreach (EquipeParticipando eq in acertaram)
-                        if (eq.Id == e.Id)
-                            e.Acerto(false);
-                        else
-                            e.Erro();
+                    if (acertaram.Select(eq => eq.Id).Contains(e.Id))
+                        e.Acerto(false);
+                    else
+                        e.Erro();
             }
+        }
+
+        public void Recuperação(EquipeParticipando[] acertaram)
+        {
+            foreach (var eq in acertaram.Where(eq => eq.Eliminada))
+            {
+                eq.Repescou();
+            }
+        }
+
+        public void TopQuiz()
+        {
+            Perguntas = new Queue<Pergunta>(Data.Cache.Perguntas.Where(eq => eq.TopQuiz).ToArray().Randomize());
+            Equipes = new List<EquipeParticipando>(Equipes.Where(eq => !eq.Eliminada));
+            _TopQuiz = true;
         }
 
         public EquipeParticipando[] GetParcialRanking()
