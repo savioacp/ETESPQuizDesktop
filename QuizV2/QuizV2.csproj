@@ -189,12 +189,6 @@
     <Resource Include="Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\transparente.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="branco.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\coruja 1.png" />
     <Resource Include="Images\coruja 2.png" />
   </ItemGroup>
