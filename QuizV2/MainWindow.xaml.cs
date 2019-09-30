@@ -55,10 +55,10 @@ namespace QuizV2
 
         public static void AtualizarEquipes()
         {
-            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
+            var currentWindow = Application.Current.MainWindow as MainWindow;
             Data.Cache.Equipes = Data.DataManager.GetEquipes();
             currentWindow.wrpEquipes.Children.Clear();
-            foreach (Equipe eq in Data.Cache.Equipes)
+            foreach (var eq in Data.Cache.Equipes)
             {
                 currentWindow.wrpEquipes.Children.Add(new EquipeCard(eq));
             }
@@ -66,17 +66,17 @@ namespace QuizV2
 
         public static void AtualizarPerguntas()
         {
-            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;
+            var currentWindow = Application.Current.MainWindow as MainWindow;
             Data.Cache.Perguntas = Data.DataManager.GetPerguntas();
             currentWindow.stpPerguntas.Children.Clear();
-            foreach (Pergunta pergunta in Data.Cache.Perguntas)
+            foreach (var pergunta in Data.Cache.Perguntas)
             {
                 currentWindow.stpPerguntas.Children.Add(new PerguntaExpander(pergunta));
             }
         }
         public static void Notificar(string mensagem)
         {                                                                                                    
-            MainWindow currentWindow = Application.Current.MainWindow as MainWindow;                         
+            var currentWindow = Application.Current.MainWindow as MainWindow;                         
             currentWindow.snackbarNotifications.MessageQueue.Enqueue(mensagem, "OK", () => {; });            
         }
 
@@ -87,8 +87,13 @@ namespace QuizV2
 
         private void btnConfirmarAdicionar_Click(object sender, RoutedEventArgs e)
         {
-
-            Equipe toAdd = new Equipe()  
+            if (string.IsNullOrWhiteSpace(txtAddEquipeNome.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtAddEquipeIntegrante1.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtAddEquipeIntegrante2.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtAddEquipeIntegrante3.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtAddEquipeIntegrante4.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtAddEquipeIntegrante5.Text)) return;
+            var toAdd = new Equipe()  
             { 
                 Integrantes =  new[] {txtAddEquipeIntegrante1.Text, txtAddEquipeIntegrante2.Text, txtAddEquipeIntegrante3.Text, txtAddEquipeIntegrante4.Text, txtAddEquipeIntegrante5.Text },
                 Nome = txtAddEquipeNome.Text,
@@ -111,7 +116,7 @@ namespace QuizV2
         
         private void CtcImagem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog()
+            var ofd = new OpenFileDialog()
             {
                 Title = "Escolha uma imagem do computador.",
                 Filter = "Arquivos de imagem (*.png; *.jpg; *.bmp) | *.png; *.jpg; *.bmp"
@@ -167,8 +172,14 @@ namespace QuizV2
         {
             if (tgbDissertativa.IsChecked == true)
             {
+                if (string.IsNullOrWhiteSpace(txtRespostaDissertativa.Text))
+                {
+                    txtRespostaDissertativa.Focus();
+                    return;
+                }
 
-                Pergunta pergunta = new Pergunta
+
+                var pergunta = new Pergunta
                 {
                     Texto = txtTextoPergunta.Text,
                     Imagem = Serializa.GetImageFromImageSource(img1.Source),
@@ -181,16 +192,36 @@ namespace QuizV2
                 dlgAddPergunta.IsOpen = false;
             }
             else
-            { 
-                string correta = "";
+            {
+                if (string.IsNullOrWhiteSpace(txtRespostaA.Text))
+                {
+                    txtRespostaA.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtRespostaB.Text))
+                {
+                    txtRespostaB.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtRespostaC.Text))
+                {
+                    txtRespostaC.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtRespostaD.Text))
+                {
+                    txtRespostaD.Focus();
+                    return;
+                }
+
+
+                var correta = "";
                 if (rdbRespostaA.IsChecked ?? false) correta = txtRespostaA.Text;
                 if (rdbRespostaB.IsChecked ?? false) correta = txtRespostaB.Text;
                 if (rdbRespostaC.IsChecked ?? false) correta = txtRespostaC.Text;
                 if (rdbRespostaD.IsChecked ?? false) correta = txtRespostaD.Text;
 
-                var vazia = BitmapSource.Create(2, 2, 96, 96, PixelFormats.Indexed1, new BitmapPalette(new List<System.Windows.Media.Color> { Colors.Transparent }), new byte[] { 0, 0, 0, 0 }, 1);
-
-                Pergunta pergunta = new Pergunta
+                var pergunta = new Pergunta
                 {
                     Texto = txtTextoPergunta.Text,
                     Imagem = Serializa.GetImageFromImageSource(img1.Source),

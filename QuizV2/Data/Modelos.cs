@@ -30,14 +30,8 @@ namespace QuizV2
         public string Correta = null;
         public string[] Respostas;
 
-		public bool Dissertativa
-		{
-			get
-			{
-				return Respostas.Length == 1;
-			}
-		}
-	}
+		public bool Dissertativa => Respostas.Length == 1;
+    }
 
     public class EquipeParticipando : Equipe
     {
@@ -61,6 +55,20 @@ namespace QuizV2
         public void Repescou()
         {
             Erros = 0;
+        }
+    }
+
+    public class EquipeTopQuiz : EquipeParticipando
+    {
+        public new bool Eliminada => true;
+
+        public EquipeTopQuiz(EquipeParticipando e)
+        {
+            Erros = e.Erros;
+            Pontos = e.Pontos;
+            Nome = e.Nome;
+            Integrantes = e.Integrantes;
+            Id = e.Id;
         }
     }
 

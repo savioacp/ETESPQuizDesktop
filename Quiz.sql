@@ -151,20 +151,20 @@ insert into tblIntegrante values (15, 'Integrante 04')
 insert into tblIntegrante values (15, 'Integrante 05')
 
 
-insert into tblPergunta select 'Quem é o personagem apresentado na imagem?', BulkColumn, '0' from openrowset(bulk N'E:\proyetitos\QuizV2\sans_thumbnail.png', SINGLE_BLOB) as img
+insert into tblPergunta select 'Quem é o personagem apresentado na imagem?', BulkColumn, '1' from openrowset(bulk N'E:\proyetitos\QuizV2\sans_thumbnail.png', SINGLE_BLOB) as img
 --insert into tblPergunta values ('Quem é o personagem Sans, de Undertale?', null, '1')
 insert into tblResposta values  (1, 'O Esqueletóide, de Untale', 0),
 								(1, 'O Esqueletomano, de Touhou', 0),	
 								(1, 'Sans, de Undertale', 1),
 								(1, 'Papyrus, de Deltarune', 0)
 
-insert into tblPergunta select 'Com base exclusivamente nos dados apresentados no gráfico quanto à cotação do dólar comercial no último dia útil de cada mês de 2015, assinale a alternativa correta.', BulkColumn, '0' from openrowset(bulk N'E:\proyetitos\QuizV2\GRAFICO000.png', SINGLE_BLOB) as img
+insert into tblPergunta select 'Com base exclusivamente nos dados apresentados no gráfico quanto à cotação do dólar comercial no último dia útil de cada mês de 2015, assinale a alternativa correta.', BulkColumn, '1' from openrowset(bulk N'E:\proyetitos\QuizV2\GRAFICO000.png', SINGLE_BLOB) as img
 insert into tblResposta values  (2, 'Em dezembro de 2014, a cotação do dólar comercial foi menor que 2,689', 0),
 								(2, 'O maior valor para a cotação do dólar comercial foi verificado em 28 de setembro.', 0),
 								(2, 'A função que representa o valor da cotação do dólar comercial em relação ao tempo é crescente, no intervalo apresentado no gráfico.', 0),
 								(2, 'A diferença entre os valores da cotação do dólar comercial de maio e de março foi menor que um centavo de real.', 1)
 
-insert into tblPergunta values  ('De quem é a famosa frase “Penso, logo existo”?', NULL, '0')
+insert into tblPergunta values  ('De quem é a famosa frase “Penso, logo existo”?', NULL, '1')
 insert into tblResposta values  (3, 'Platão', 0),
 								(3, 'Descartes', 1),
 								(3, 'Sócrates', 0),
@@ -182,7 +182,23 @@ insert into tblResposta values  (5, 'Legenda', 0),
 								(5, 'Lenda', 1),
 								(5, 'Conto', 0)
 
+insert into tblPergunta values  ('Quem pintou "Guernica"?', NULL, '1')
+insert into tblResposta values  (6, 'Paul Cézanne', 0),
+								(6, 'Diego Rivera', 0),
+								(6, 'Pablo Picasso', 1),
+								(6, 'Tarsila do Amaral', 0)
 
+insert into tblPergunta values  ('Quais são os três predadores do reino animal reconhecidos pela habilidade de caçar em grupo, se camuflar para surpreender as presas e possuir sentidos apurados, respectivamente:', NULL, '1')
+insert into tblResposta values  (7, 'Tubarão branco, crocodilo e sucuri', 0),
+								(7, 'Hiena, urso branco e lobo cinzento', 1),
+								(7, 'Tigre, gavião e orca', 0),
+								(7, 'Leão, tubarão branco e urso cinzento', 0)
+
+insert into tblPergunta values  ('Em qual local da Ásia o português é língua oficial?', NULL, '0')
+insert into tblResposta values  (8, 'Índia', 0),
+								(8, 'Moçambique', 0),
+								(8, 'Portugal', 0),
+								(8, 'Macau', 1)
 
 select * from tblEquipe
 

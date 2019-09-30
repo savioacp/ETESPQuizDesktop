@@ -41,12 +41,14 @@ namespace QuizV2
             var cmdConfirmarSair = new RoutedCommand {InputGestures = { new KeyGesture(Key.Enter) }};
             var cmdNext = new RoutedCommand {InputGestures = {new KeyGesture(Key.F1)}};
             var cmdRanking = new RoutedCommand { InputGestures = { new KeyGesture(Key.F2) } };
+            var cmdPodio = new RoutedCommand { InputGestures = { new KeyGesture(Key.F5) } };
 
 
             CommandBindings.Add(new CommandBinding(cmdSair, Sair));
             CommandBindings.Add(new CommandBinding(cmdConfirmarSair, ConfirmarSaída));
             CommandBindings.Add(new CommandBinding(cmdNext, NextState));
             CommandBindings.Add(new CommandBinding(cmdRanking, SwitchRanking));
+            CommandBindings.Add(new CommandBinding(cmdPodio, Pódio));
 
             txtRespostaA.Text = "";
             txtRespostaB.Text = "";
@@ -90,6 +92,8 @@ namespace QuizV2
                     }
                     if (a.Item1 == null)
                     {
+                        if (TopQuiz)
+                            Pódio(null, null);
                         return;
                     }
                     LoadPergunta(a.Item1, a.Item2);
@@ -99,7 +103,7 @@ namespace QuizV2
                     
                     break;
                 case Estado.Resposta:
-                    (stpRespostas.Children.OfType<TextBlock>().Where(txt => Regex.IsMatch(txt.Text, $"[ABCD]\\) {quiz.Pergunta.Correta}"))).First().Foreground = Brushes.Green;
+                    stpRespostas.Children.OfType<TextBlock>().First(txt => Regex.IsMatch(txt.Text, $"[ABCD]\\) {quiz.Pergunta.Correta}")).Foreground = Brushes.GreenYellow;
                     estado = Estado.Resultado;
                     mediaPlayer.Stop();
                     mediaPlayer.Position = TimeSpan.Zero;
@@ -120,20 +124,21 @@ namespace QuizV2
 
                     if (quiz.Equipes.Count(eq => !eq.Eliminada) == 3)
                     {
-
+                        quiz.TopQuiz();
                     }
                     estado = Estado.Pergunta;
                     break;
             }
         }
 
-        private void Pódio()
+        private void Pódio(object sender, RoutedEventArgs e)
         {
 
         }
         private void SwitchRanking(object sender, RoutedEventArgs e)
         {
             var rParcial = quiz.GetParcialRanking();
+            ToggleButtonRepescagem.Visibility = TopQuiz ? Visibility.Collapsed : Visibility.Visible;
             equipesOrdenadas.Clear();
             equipesOrdenadas.Add(new ListViewItemWithLittleImage()
             {
@@ -153,14 +158,15 @@ namespace QuizV2
                 Image = new BitmapImage(new Uri($"pack://application:,,,/{Assembly.GetExecutingAssembly().GetName().Name};component/Images/medalhaTerceiro.png", UriKind.Absolute)),
                 Index = "3º"
             });
-            for(int i = 3; i < rParcial.Length; i++)
-            {
-                equipesOrdenadas.Add(new ListViewItemWithLittleImage()
+            if(!TopQuiz)
+                for(int i = 3; i < rParcial.Length; i++)
                 {
-                    Equipe = rParcial[i],
-                    Index = $"{i + 1}º"
-                });
-            }
+                    equipesOrdenadas.Add(new ListViewItemWithLittleImage()
+                    {
+                        Equipe = rParcial[i],
+                        Index = $"{i + 1}º"
+                    });
+                }
 
             lbxRanking.ItemsSource = equipesOrdenadas.ToArray();
             DrawerHost.IsRightDrawerOpen = !DrawerHost.IsRightDrawerOpen;

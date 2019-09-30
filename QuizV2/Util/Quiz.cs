@@ -79,7 +79,7 @@ namespace QuizV2.Util
         public void TopQuiz()
         {
             Perguntas = new Queue<Pergunta>(Data.Cache.Perguntas.Where(eq => eq.TopQuiz).ToArray().Randomize());
-            Equipes = new List<EquipeParticipando>(Equipes.Where(eq => !eq.Eliminada));
+            Equipes = new List<EquipeParticipando>(Equipes.Where(eq => !eq.Eliminada).Select(eq => new EquipeTopQuiz(eq)));
             _TopQuiz = true;
         }
 
