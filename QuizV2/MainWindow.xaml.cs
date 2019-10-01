@@ -15,7 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using System.Drawing;
+using System.IO;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace QuizV2
 {
@@ -262,6 +264,24 @@ namespace QuizV2
         private void BtnVoltarFechar_Click(object sender, RoutedEventArgs e)
         {
             dlgConfirmarFechar.IsOpen = false;
+        }
+
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                Equipe[] equipes = JsonConvert.DeserializeObject<Equipe[]>(File.ReadAllText((e.Data.GetData(DataFormats.FileDrop, false) as string[])[0]));
+                foreach (Equipe eq in equipes)
+                {
+                    Data.DataManager.AddEquipe(eq);
+                }
+                AtualizarEquipes();
+                Notificar($"Foram importadas {equipes.Length} equipes");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

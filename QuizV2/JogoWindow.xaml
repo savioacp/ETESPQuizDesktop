@@ -28,13 +28,13 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="Fechar" Grid.ColumnSpan="2" FontSize="16" FontWeight="SemiBold"/>
                 <TextBlock Text="Deseja realmente sair deste quiz?" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
-                <Button Name="btnVoltarSair" Grid.Row="2" Grid.Column="0" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#FF999999">
+                <Button Name="btnVoltarSair" Grid.Row="2" Grid.Column="0" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#FF999999" Click="BtnVoltarSair_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="ArrowBack"/>
                         <TextBlock Text="Voltar [Esc]" Margin="3,0,0,0"/>
                     </StackPanel>
                 </Button>
-                <Button Name="btnConfirmarSair" Grid.Row="2" Grid.Column="1" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#FFB24242">
+                <Button Name="btnConfirmarSair" Grid.Row="2" Grid.Column="1" Style="{DynamicResource MaterialDesignFlatButton}" Foreground="#FFB24242" Click="ButtonFechar_Click">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Close"/>
                         <TextBlock Text="Sim [Enter]" Margin="3,0,0,0"/>
@@ -93,7 +93,7 @@
                                 <TextBlock Text="Computar acertos" Grid.ColumnSpan="4" Margin="10,10,10,0" FontSize="23"/>
                                 <TextBlock Text="Marque as equipes que acertaram a questão." Grid.Row="1" TextWrapping="Wrap" Margin="10,0,10,10" HorizontalAlignment="Left" MaxWidth="150"/>
                                 <StackPanel Orientation="Horizontal"  Grid.Row="2" Margin="5,0,0,0">
-                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchToggleButton}"  Margin="5" Name="ToggleButtonRepescagem" Click="ToggleButtonRepescagem_OnClick"/>
+                                    <ToggleButton Style="{DynamicResource MaterialDesignSwitchAccentToggleButton}"  Margin="5" Name="ToggleButtonRepescagem" Click="ToggleButtonRepescagem_OnClick"/>
                                     <TextBlock VerticalAlignment="Center" Text="Recuperação" FontSize="16"/>
                                 </StackPanel>
                                     <ScrollViewer Grid.Row="3" MaxHeight="500" Margin="10" materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed" Style="{DynamicResource MaterialDesignScrollViewer}">
@@ -164,9 +164,173 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    
+                    <Image x:Name="podio2" Margin="493,0,492,-461" Source="Images/podio2.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="470" VerticalAlignment="Bottom">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image x:Name="podio3" HorizontalAlignment="Left" Height="266" Margin="287,0,0,-233" Source="Images/podio3.png" Stretch="Fill" VerticalAlignment="Bottom" Width="227" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image x:Name="podio" HorizontalAlignment="Right" Height="288" Margin="0,0,284,-287" Source="Images/podio.png" Stretch="Fill" VerticalAlignment="Bottom" Width="230" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image x:Name="regua" HorizontalAlignment="Left" Margin="325,292,0,215" Source="Images/gifregua.gif" Width="189" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image x:Name="lapis" HorizontalAlignment="Right" Margin="0,241,320,281" Source="Images/giflapis.gif" Width="155" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Image x:Name="globo" Height="222" Margin="493,85,525,0" Source="Images/gifglobo.gif" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Opacity="0">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" FontStyle="Oblique" Height="123" Margin="131,0,0,83" TextWrapping="Wrap" FontFamily="roboto" FontSize="25" VerticalAlignment="Bottom" Width="150" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform><Run Text="TERCEIRO LUGAR:"/><LineBreak/><Run Text="EQUIPE X"/></TextBlock>
+                    <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Right" FontStyle="Oblique" Height="123" Margin="0,97,364,0" TextWrapping="Wrap" FontFamily="roboto" FontSize="25" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform><Run Text="PRIMEIRO "/><Run Text="LUGAR:"/><LineBreak/><Run Text="EQUIPE X"/></TextBlock>
+                    <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Right" FontStyle="Oblique" Height="123" Margin="0,0,91,180.5" TextWrapping="Wrap" FontFamily="roboto" FontSize="25" VerticalAlignment="Bottom" Width="150"><Run Text="SEGUNDO"/><LineBreak/><Run/><Run Text="LUGAR:"/><LineBreak/><Run Text="EQUIPE X"/></TextBlock>
+
                 </Grid>
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
     </materialDesign:DialogHost>
+    
+
+    <Window.Resources>
+        <Storyboard x:Key="animation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="podio2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-198"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-297"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-360"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="-417"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="podio3">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-72"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-144"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-189"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="-216"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="podio">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-87"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="-147"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="-207"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="-240"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="regua">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="regua">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="-3"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="regua">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="lapis">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="36"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="lapis">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="podio2">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="podio">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="lapis">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="-6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="globo">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="globo">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.2" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.6" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock_Copy1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.7" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.9" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.9" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:3.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="textBlock_Copy">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2.9" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
 </Window>

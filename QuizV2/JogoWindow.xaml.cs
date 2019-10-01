@@ -85,7 +85,13 @@ namespace QuizV2
             switch (estado)
             {
                 case Estado.Pergunta:
+                    if (quiz.Equipes.Count(eq => !eq.Eliminada) == 3)
+                    {
+                        quiz.TopQuiz();
+                    }
+
                     ValueTuple<Pergunta, int> a = quiz.NextPergunta();
+
                     foreach (var textBlock in stpRespostas.Children.OfType<TextBlock>())
                     {
                         textBlock.Foreground = Brushes.Black;
@@ -122,10 +128,7 @@ namespace QuizV2
                     ItemsControlFinalizar.ItemsSource = equipesFinalizar.ToArray();
                     DialogHostFinalizar.IsOpen = true;
 
-                    if (quiz.Equipes.Count(eq => !eq.Eliminada) == 3)
-                    {
-                        quiz.TopQuiz();
-                    }
+                    
                     estado = Estado.Pergunta;
                     break;
             }
@@ -133,26 +136,36 @@ namespace QuizV2
 
         private void Pódio(object sender, RoutedEventArgs e)
         {
+            var Ordenada = quiz.Equipes.Where(eq => !eq.Eliminada).OrderByDescending(eq => eq.Pontos).ToList();
+            var textPrimeiro = $"{Ordenada[0].Nome}\n {Ordenada[0].Pontos} Pontos";
+            var textSegundo  = $"{Ordenada[1].Nome}\n {Ordenada[1].Pontos} Pontos";
+            var textTerceiro = $"{Ordenada[2].Nome}\n {Ordenada[2].Pontos} Pontos";
 
+            textBlock.Text = textPrimeiro;
+            textBlock_Copy.Text = textSegundo;
+            textBlock_Copy1.Text = textTerceiro;
+
+            var st = FindResource("animation") as Storyboard;
+            st.Begin();
         }
         private void SwitchRanking(object sender, RoutedEventArgs e)
         {
             var rParcial = quiz.GetParcialRanking();
             ToggleButtonRepescagem.Visibility = TopQuiz ? Visibility.Collapsed : Visibility.Visible;
             equipesOrdenadas.Clear();
-            equipesOrdenadas.Add(new ListViewItemWithLittleImage()
+            equipesOrdenadas.Add(new ListViewItemWithLittleImage
             {
                 Equipe = rParcial[0],
                 Image = new BitmapImage(new Uri($"pack://application:,,,/{Assembly.GetExecutingAssembly().GetName().Name};component/Images/medalhaPrimeiro.png", UriKind.Absolute)),
                 Index = "1º"
             });
-            equipesOrdenadas.Add(new ListViewItemWithLittleImage()
+            equipesOrdenadas.Add(new ListViewItemWithLittleImage
             {
                 Equipe = rParcial[1],
                 Image = new BitmapImage(new Uri($"pack://application:,,,/{Assembly.GetExecutingAssembly().GetName().Name};component/Images/medalhaSegundo.png", UriKind.Absolute)),
                 Index = "2º"
             });
-            equipesOrdenadas.Add(new ListViewItemWithLittleImage()
+            equipesOrdenadas.Add(new ListViewItemWithLittleImage
             {
                 Equipe = rParcial[2],
                 Image = new BitmapImage(new Uri($"pack://application:,,,/{Assembly.GetExecutingAssembly().GetName().Name};component/Images/medalhaTerceiro.png", UriKind.Absolute)),
@@ -161,7 +174,7 @@ namespace QuizV2
             if(!TopQuiz)
                 for(int i = 3; i < rParcial.Length; i++)
                 {
-                    equipesOrdenadas.Add(new ListViewItemWithLittleImage()
+                    equipesOrdenadas.Add(new ListViewItemWithLittleImage
                     {
                         Equipe = rParcial[i],
                         Index = $"{i + 1}º"
@@ -206,7 +219,7 @@ namespace QuizV2
         
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            //Dispatcher.InvokeAsync(() => MessageBox.Show($"{string.Join(", ", equipesFinalizar.Where(eq => eq.IsRight).Select(eq => eq.Nome))}"));
+
         }
 
         private void ButtonConfirmarFinalizar_OnClick(object sender, RoutedEventArgs e)
@@ -227,7 +240,10 @@ namespace QuizV2
             ;
         }
 
-
+        public void ButtonFechar_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
 
         class ListViewItemWithLittleImage
         {
@@ -259,5 +275,10 @@ namespace QuizV2
             Pergunta, Resposta, Resultado
         }
 
+
+        private void BtnVoltarSair_OnClick(object sender, RoutedEventArgs e)
+        {
+            dlgConfirmarFechar.IsOpen = false;
+        }
     }
 }

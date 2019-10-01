@@ -30,7 +30,7 @@ namespace QuizV2.Data
         {
 			cmd = new SqlCommand
 			{
-				CommandText = "insert tblEquipe output INSERTED.IdEquipe values (@Nome, @Cor)"
+				CommandText = "insert tblEquipe output INSERTED.IdEquipe values (@Nome, @Cor, '')"
             };
 			cmd.Parameters.AddWithValue("@Nome", equipe.Nome);
             cmd.Parameters.AddWithValue("@Cor", equipe.Cor);

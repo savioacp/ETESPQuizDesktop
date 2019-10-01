@@ -1,4 +1,5 @@
 ﻿<Window x:Class="QuizV2.MainWindow"
+        AllowDrop="True"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +14,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Grupo F - Quiz" Width="1280" Height="720" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="Grupo F - Quiz" Width="1280" Height="720" Loaded="Window_Loaded" Closing="Window_Closing" Drop="Window_Drop">
     <materialDesign:DialogHost Name="dlgConfirmarFechar" IsOpen="False" CloseOnClickAway="True">
         <materialDesign:DialogHost.DialogContent>
             <Grid Margin="10">
@@ -43,7 +44,7 @@
             </Grid>
         </materialDesign:DialogHost.DialogContent>
         <Grid>
-            <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource SecondaryAccentBrush}" Width="178" MinWidth="178" MaxWidth="250" HorizontalAlignment="Left">
+            <Border BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryHueMidBrush}" Width="178" MinWidth="178" MaxWidth="250" HorizontalAlignment="Left">
                 <StackPanel HorizontalAlignment="Left" Width="178" MinWidth="178" MaxWidth="250"  >
                     <Image Height="107" Source="Images\logo.png" Margin="10,10,10,20" RenderOptions.BitmapScalingMode="Fant" Stretch="UniformToFill"/>
                     <StackPanel>
@@ -54,7 +55,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource PrimaryHueMidBrush}"/>
 
                         <Button Name="mnuBtnEquipes" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
                             <StackPanel Orientation="Horizontal" Width="160">
@@ -63,7 +64,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Separator Style="{StaticResource MaterialDesignSeparator}"  Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}"  Background="{DynamicResource PrimaryHueMidBrush}"/>
 
                         <Button Name="mnuBtnPerguntas" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
                             <StackPanel Orientation="Horizontal" Width="160">
@@ -71,7 +72,7 @@
                                 <TextBlock Text="Questões" Margin="10,0,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource PrimaryHueMidBrush}"/>
 
                         <Button Name="mnuBtnSobre" Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource MaterialDesignBody}" Padding="0" Height="28">
                             <StackPanel Orientation="Horizontal" Width="160">
@@ -79,13 +80,13 @@
                                 <TextBlock Text="Sobre" Margin="10,0,0,0"/>
                             </StackPanel>
                         </Button>
-                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource SecondaryAccentBrush}"/>
+                        <Separator Style="{StaticResource MaterialDesignSeparator}" Background="{DynamicResource PrimaryHueMidBrush}"/>
 
                     </StackPanel>
 
                 </StackPanel>
             </Border>
-            <materialDesign:Transitioner Name="contentTransitioner" SelectedIndex="0" Margin="183,0,0,0" Grid.ColumnSpan="2" >
+            <materialDesign:Transitioner Name="contentTransitioner" SelectedIndex="3" Margin="183,0,0,0" Grid.ColumnSpan="2" >
                 <materialDesign:TransitionerSlide >
                     <materialDesign:TransitionerSlide.ForwardWipe>
                         <materialDesign:FadeWipe />
@@ -101,7 +102,27 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Jogo</TextBlock>
-                        <ComboBox Name="ComboBoxErrosEliminantes" materialDesign:ComboBoxAssist.ShowSelectedItem="True" Grid.Row="2" materialDesign:HintAssist.Hint="Quantidade de erros permitidos" MinWidth="72" HorizontalAlignment="Left" Margin="16" SelectedIndex="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <ScrollViewer Grid.Row="1">
+                            <TextBlock FontSize="16" Margin="15" TextWrapping="Wrap" LineHeight="25">
+                                <Run Text="Equipes" FontSize="20" FontFamily="MV Boli"/> <LineBreak/>
+                                •	Deverão ser formadas por 05 (cinco) integrantes<LineBreak/>
+                                •	Deverão ter um grito de guerra de até 10s<LineBreak/>
+                                •	Possuir uma cor própria e vir "uniformizado"<LineBreak/>
+                                <LineBreak/>
+                                <Run Text="Jogo" FontSize="20" FontFamily="MV Boli"/><LineBreak/>
+                                •	Todas as equipes deverão responder às perguntas dentro de 15 (quinze) segundos;<LineBreak/>
+                                •	Após uma quantidade de erros definida antes do jogo começar, a equipe será eliminada, podendo participar da próxima Recuperação;<LineBreak/>
+                                •	Durante o TopQuiz, não haverá eliminação, acabando apenas com a decisão do Juiz ou com o fim das perguntas cadastradas; <LineBreak/>
+                                •	A Recuperação será uma pergunta onde as equipes que acertarem voltarão ao jogo. O momento em que ela acontecerá estará a cargo do Juiz;<LineBreak/>
+                                •	Quando restarem apenas 03 (três) equipes, será iniciada a fase TopQuiz<LineBreak/>
+                                •	O TopQuiz será a parte final do jogo, onde serão apresentadas perguntas pré-determinadas para esta fase, com dificuldade elevada.<LineBreak/>
+                                <LineBreak/>
+                                <Run Text="Pontuação" FontSize="20" FontFamily="MV Boli"/><LineBreak/>
+                                •	Se mais de uma equipe responder corretamente, a questão valerá 1 ponto<LineBreak/>
+                                •	Se apenas uma equipe responder corretamente, a questão valerá 2 pontos<LineBreak/>
+                            </TextBlock>
+                        </ScrollViewer>
+                            <ComboBox Name="ComboBoxErrosEliminantes" materialDesign:ComboBoxAssist.ShowSelectedItem="True" Grid.Row="2" materialDesign:HintAssist.Hint="Quantidade de erros permitidos" MinWidth="72" HorizontalAlignment="Left" Margin="16" SelectedIndex="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                             <ComboBox.Items>
                                 <ComboBoxItem>0</ComboBoxItem>
                                 <ComboBoxItem>1</ComboBoxItem>
@@ -193,7 +214,7 @@
                                 <RowDefinition Height="506*"/>
                             </Grid.RowDefinitions>
                             <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
-                            <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
+                            <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatAccentButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
                                 <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
                             </Button>
                             <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" >
@@ -290,7 +311,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock FontSize="36" Grid.Column="0"  Margin="15,8,0,0">Questões</TextBlock>
-                            <Button  Name="btnAdicionarPergunta" Click="BtnAdicionarPergunta_Click" Style="{DynamicResource MaterialDesignFlatButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
+                            <Button  Name="btnAdicionarPergunta" Click="BtnAdicionarPergunta_Click" Style="{DynamicResource MaterialDesignFlatAccentButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
                                 <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
                             </Button>
                             <ScrollViewer Grid.ColumnSpan="2" Grid.Row="1">
@@ -302,6 +323,53 @@
 
                         </Grid>
                     </materialDesign:DialogHost>
+                </materialDesign:TransitionerSlide>
+                <materialDesign:TransitionerSlide>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Sobre</TextBlock>
+                        <ScrollViewer  Grid.Column="0" Grid.Row="1">
+                            <TextBlock TextWrapping="Wrap" Margin="15">
+                                <Span FontSize="18">
+                                    Projeto de Quiz desenvolvido para a Escola Técnica Estadual de São Paulo, pelos alunos do Grupo F do segundo ano do Ensino Médio integrado ao Técnico de Informática, para ser utilizado na semana da primavera pelas professoras Márcia Xavier e Juliana Lima.
+                                </Span>
+                                <LineBreak/><LineBreak/>
+                                <Span FontSize="30" FontFamily="MV Boli">
+                                    Equipe
+                                </Span>
+                                <LineBreak/>
+                                <Span FontSize="22" FontFamily="MV Boli">
+                                    Desenvolvedores Desktop<LineBreak />
+                                    <Span FontSize="18" FontFamily="Roboto">
+                                    - Sávio Alves <LineBreak/> 
+                                    - Guilherme Panza<LineBreak/> 
+                                    - Lara Souza<LineBreak/> 
+                                    </Span>
+                                    <LineBreak/> 
+                                    Desenvolvedores Web<LineBreak/> 
+                                    <Span FontSize="18" FontFamily="Roboto">
+                                    - Lucas Kenzo<LineBreak/> 
+                                    </Span>
+                                    <LineBreak/> 
+                                    Desenvolvedora de Banco de Dados<LineBreak/> 
+                                    <Span FontSize="18" FontFamily="Roboto">
+                                    - Juliana Craveiro <LineBreak/> 
+                                    </Span>
+                                    <LineBreak/> 
+                                    Designers<LineBreak/> 
+                                    <Span FontSize="18" FontFamily="Roboto">
+                                    - Beatriz Silvério<LineBreak/> 
+                                    - Khadeeja Baloch<LineBreak/>
+                                    </Span>
+                                </Span>
+                            </TextBlock>
+                        </ScrollViewer>
+                    </Grid>
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
             <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" Name="snackbarNotifications" />

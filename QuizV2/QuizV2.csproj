@@ -180,6 +180,9 @@
     <Resource Include="Images\coruja 2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\gifglobo.gif" />
+    <Resource Include="Images\giflapis.gif" />
+    <Resource Include="Images\gifregua.gif" />
     <Content Include="Images\medalhaPrimeiro.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -189,6 +192,9 @@
     <Content Include="Images\medalhaTerceiro.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\podio.png" />
+    <Resource Include="Images\podio2.png" />
+    <Resource Include="Images\podio3.png" />
     <Content Include="Media\timer-sound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

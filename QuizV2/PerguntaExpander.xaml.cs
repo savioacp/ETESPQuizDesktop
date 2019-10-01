@@ -63,7 +63,7 @@ namespace QuizV2
 
             tgbImagem.IsChecked = pergunta.TemImagem;
 
-            //if(pergunta.TemImagem) img1.Source = Serializa.GetImageSourceFromImage(pergunta.Imagem);
+            if(pergunta.TemImagem) img1.Source = Serializa.GetImageSourceFromImage(pergunta.Imagem);
             
         }
 
