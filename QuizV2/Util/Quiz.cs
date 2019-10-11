@@ -50,12 +50,13 @@ namespace QuizV2.Util
 
         public void FinalizarPergunta(EquipeParticipando[] acertaram)
         {
+            
             if (acertaram.Length == 1)
             {
                 foreach (EquipeParticipando e in Equipes)
                     if (e.Id == acertaram[0].Id)
                         e.Acerto(true);
-                    else
+                    else if (!_TopQuiz)
                         e.Erro();
             }
             else
@@ -63,7 +64,7 @@ namespace QuizV2.Util
                 foreach(EquipeParticipando e in Equipes)
                     if (acertaram.Select(eq => eq.Id).Contains(e.Id))
                         e.Acerto(false);
-                    else
+                    else if (!_TopQuiz)
                         e.Erro();
             }
         }

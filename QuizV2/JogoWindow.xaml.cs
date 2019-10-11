@@ -137,13 +137,14 @@ namespace QuizV2
         private void Pódio(object sender, RoutedEventArgs e)
         {
             var Ordenada = quiz.Equipes.Where(eq => !eq.Eliminada).OrderByDescending(eq => eq.Pontos).ToList();
-            var textPrimeiro = $"{Ordenada[0].Nome}\n {Ordenada[0].Pontos} Pontos";
-            var textSegundo  = $"{Ordenada[1].Nome}\n {Ordenada[1].Pontos} Pontos";
-            var textTerceiro = $"{Ordenada[2].Nome}\n {Ordenada[2].Pontos} Pontos";
+            var textPrimeiro = $"{Ordenada[0].Nome}";
+            var textSegundo  = $"{Ordenada[1].Nome}";
+            var textTerceiro = $"{Ordenada[2].Nome}";
 
-            textBlock.Text = textPrimeiro;
-            textBlock_Copy.Text = textSegundo;
-            textBlock_Copy1.Text = textTerceiro;
+            Transitioner.SelectedIndex = 1;
+            textBlock.Text = textTerceiro;
+            textBlock_Copy1.Text = textSegundo;
+            textBlock_Copy.Text = textPrimeiro;
 
             var st = FindResource("animation") as Storyboard;
             st.Begin();

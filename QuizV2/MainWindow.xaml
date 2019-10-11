@@ -214,7 +214,7 @@
                                 <RowDefinition Height="506*"/>
                             </Grid.RowDefinitions>
                             <TextBlock FontSize="36" Margin="15,8,0,0" FontFamily="MV Boli" Height="53" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">Equipes</TextBlock>
-                            <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatAccentButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Equipe" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
+                            <Button  Name="btnAdicionarEquipe" Click="BtnAdicionarEquipe_Click" Style="{DynamicResource MaterialDesignFlatAccentButton}" BorderBrush="#FF0091EA" Grid.Row="0" Grid.Column="1" Margin="10,0,0,5" Height="40" Padding="0" ToolTip="Adicionar Pergunta" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40">
                                 <materialDesign:PackIcon Kind="AddBox" HorizontalAlignment="Center" Height="32" Width="32"/>
                             </Button>
                             <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" >
@@ -373,7 +373,8 @@
                 </materialDesign:TransitionerSlide>
             </materialDesign:Transitioner>
             <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" Name="snackbarNotifications" />
-
+            <Rectangle Margin="0" Fill="{DynamicResource MaterialDesignPaper}" Name="pau" Visibility="Collapsed"/>
+            <Image Visibility="Collapsed" Name="imgAnimacao" Source="Images\logo.png" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform"/>
         </Grid>
     </materialDesign:DialogHost>
 </Window>

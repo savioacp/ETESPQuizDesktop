@@ -56,8 +56,11 @@ namespace QuizV2
                 rdbRespostaC.IsChecked = pergunta.Correta == pergunta.Respostas[2];
                 rdbRespostaD.IsChecked = pergunta.Correta == pergunta.Respostas[3];
             }
-            
 
+            rdbRespostaA.GroupName = pergunta.Texto;
+            rdbRespostaB.GroupName = pergunta.Texto;
+            rdbRespostaC.GroupName = pergunta.Texto;
+            rdbRespostaD.GroupName = pergunta.Texto;
             tgbDissertativa.IsChecked = pergunta.Dissertativa;
             tgbTopQuiz.IsChecked = pergunta.TopQuiz;
 

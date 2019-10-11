@@ -18,6 +18,8 @@ using System.Drawing;
 using System.IO;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System.Windows.Media.Animation;
+using Point = System.Drawing.Point;
 
 namespace QuizV2
 {
@@ -44,8 +46,18 @@ namespace QuizV2
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-            AtualizarEquipes();
-            AtualizarPerguntas();
+            //var an = new DoubleAnimation();
+            //an.To = 0;
+            //an.Duration = new Duration(new TimeSpan(0,0,15));
+            //an.EasingFunction = new SineEase();
+            ////imgAnimacao.TranslatePoint(new System.Windows.Point(0,0), this);
+            //imgAnimacao.BeginAnimation(TopProperty, an);
+            //imgAnimacao.BeginAnimation(LeftProperty, an);
+
+            Dispatcher.InvokeAsync(() => {
+                AtualizarEquipes();
+                AtualizarPerguntas();
+            });
 			//foreach(Equipe eq in Data.DataManager.GetEquipes())
 			//	MessageBox.Show($"Nome: {eq.Nome}({eq.Id})\n\tCor: {eq.Cor}\n\t{eq.Integrantes[0]}\n\t{eq.Integrantes[1]}\n\t{eq.Integrantes[2]}\n\t{eq.Integrantes[3]}\n\t{eq.Integrantes[4]}");
 		}

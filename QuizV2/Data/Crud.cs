@@ -282,9 +282,10 @@ namespace QuizV2.Data
         }
         public static void DeletePergunta(Pergunta pergunta)
         {
+
             cmd = new SqlCommand
             {
-                CommandText = "delete from tblPergunta where IdPergunta=@Id"
+                CommandText = "delete from tblResposta where IdPergunta=@Id; delete from tblPergunta where IdPergunta=@Id"
             };
 
             cmd.Parameters.Add("@Id", SqlDbType.Int).Value = pergunta.Id;
